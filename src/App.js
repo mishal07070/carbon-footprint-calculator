@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Home from "./Home.js" 
+import Calculator from "./Calculator.js"
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Result from "./Result.js";
 
-function App() {
+export default function App() {
+  const [fuelNet,setFuelNet]=useState();
+  const [electricityNet,setElectricityNet]=useState();
+  const [waterNet,setWaterNet]=useState();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route path="/" Component={Home}></Route>
+        <Route path="/Calculator" element={<Calculator setFuelNet={setFuelNet} setElectricityNet={setElectricityNet} setWaterNet={setWaterNet}/>}></Route>
+        <Route path="/Result" element={<Result fuelNet={fuelNet} electricityNet={electricityNet} waterNet={waterNet}/>}></Route>
+      </Routes>
   );
 }
-
-export default App;

@@ -1,0 +1,46 @@
+{
+    "fuels":{
+        "CNG" : {
+            "Passenger Car" : 0.17517,
+            "Light Duty Trucks" : 0.23575, 
+            "tonne" : 2539.25,
+            "kg" : 2.5392
+        },
+        "Diesel" : {
+            "Passenger Car" : 0.17082,
+            "Light Duty Trucks" : 0.23156,
+            "Medium/Heavy Duty Trucks" : 0.84988,
+            "tonne" : 3208.76,
+            "kg" : 3.2087
+        },
+        "Petrol/Gasoline" : {
+            "Passenger Car" : 0.17048,
+            "Light Duty Trucks" : 0.21332,
+            "tonne" : 3153.90,
+            "kg" : 3.1539
+        },
+        "LPG" : {
+            "tonne" : 2939.29,
+            "kg" : 0.29393
+        },
+        "PNG" : {
+            "tonne" : 2539.25,
+            "kg" : 0.25392
+        }
+    },
+    "electricity" : {
+        "Non-Renewable" : 0.9,
+        "Renewable" : 0
+    },
+    "water" : {
+        "Treated Water" : {
+            "cubic metre" : 0.149,
+            "million litres" : 149
+        },
+        "Supplied Water" : {
+            "cubic metre" : 0.272,
+            "million litres" : 272
+        }
+    }
+
+}
