@@ -4,20 +4,23 @@
             "Passenger Car" : 0.17517,
             "Light Duty Trucks" : 0.23575, 
             "tonne" : 2539.25,
-            "kg" : 2.5392
+            "kg" : 2.5392,
+            "cubic metre" : 2.02
         },
         "Diesel" : {
             "Passenger Car" : 0.17082,
             "Light Duty Trucks" : 0.23156,
             "Medium/Heavy Duty Trucks" : 0.84988,
             "tonne" : 3208.76,
-            "kg" : 3.2087
+            "kg" : 3.2087,
+            "litre" : 2.7
         },
         "Petrol/Gasoline" : {
             "Passenger Car" : 0.17048,
             "Light Duty Trucks" : 0.21332,
             "tonne" : 3153.90,
-            "kg" : 3.1539
+            "kg" : 3.1539,
+            "litre" : 2.34
         },
         "LPG" : {
             "tonne" : 2939.29,
@@ -25,7 +28,9 @@
         },
         "PNG" : {
             "tonne" : 2539.25,
-            "kg" : 0.25392
+            "kg" : 0.25392,
+            "cubic metre" : 2.02
+
         }
     },
     "electricity" : {

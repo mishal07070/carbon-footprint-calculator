@@ -24,9 +24,6 @@ export default function Navbar(){
                   <Link className="navItem" to="/" onClick={handleNavigation}>Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="navItem" to="/Calculator">Calculator</Link>
-                </li>
-                <li className="nav-item">
                   <Link className="navItem"to="/" onClick={handleNavigation}>About</Link>
                 </li>
                 <li className="nav-item">

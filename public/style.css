@@ -1,3 +1,6 @@
+#root{
+    font-family: 'Quicksand', sans-serif;
+}
 .main{
     margin:20px;
 }
@@ -29,8 +32,14 @@ h1{
     font-size: 50px;
     color:rgb(9, 67, 21)
 }
-h3{
+#homeText{
+    font-family: 'Quicksand', sans-serif;
     margin-top: 20px;
+    font-size:25px;
+    color:rgb(16, 90, 31);
+}
+h3{
+    font-family: 'Quicksand', sans-serif;
     font-size:25px;
     color:rgb(16, 90, 31);
 }
@@ -40,26 +49,23 @@ h3{
         width:65%;
         height:65%;
     }
-    .time{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
     .inputs{
         flex-direction: column;
         align-items: center;
     }
     .calcForm{
         align-items: center !important; 
-        width:350px;
+        width:100% !important;
         flex-wrap: nowrap !important;
     }
-    .chart{
+    .pieChart{
         display: flex;
         justify-content: center;
         width:300px !important;
         height:auto !important; 
+    }
+    .bar{
+        width: 500px !important;
     }
 }
 
@@ -77,20 +83,22 @@ h3{
     h1{
         font-size: 40px;
     }
-    h3{
+    #homeText{
         font-size:20px;
     }
-
-    
+    .calculateByForm{
+        width:100% !important;
+    }
+    .calculateByUpload{
+        width:100% !important;
+    }
 }
 #getStarted{
-    margin-left:80px;
-    margin-right:80px;
     margin-top:30px;
-    width:400px;
-    font-size: 22px;
+    width:300px;
+    font-size: 18px;
     font-family: 'Quicksand', sans-serif;
-    height:50px;
+    height:30px;
     border-radius: 15px;
     background-color: rgb(0, 128, 49);
     color: white;
@@ -121,7 +129,6 @@ h3{
 }
 .tabsDiv{
     margin:auto;
-    margin-top: 100px;
     display:flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -136,11 +143,15 @@ h3{
 }
 
 .time{
-    margin-top:100px;
+    margin: auto;
+    width:250px;
+    margin-top:80px;
+    margin-bottom:80px;
     display:flex;
-    justify-content:center;
+    flex-direction: column;
+    align-items: center;
     column-gap: 40px;
-    row-gap: 20px;
+    row-gap: 50px;
     flex-wrap: wrap;
 }
 .Select{
@@ -150,7 +161,8 @@ h3{
 .formDiv{
     margin-top: 60px;
     display:flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 .calcForm{
     display: flex;
@@ -166,41 +178,136 @@ h3{
     justify-content:center;
     column-gap:30px;
     row-gap:20px;
+    align-items: center;
 }
 h2{
     font-family: 'Quicksand', sans-serif;
+    color: rgb(16, 90, 31);
 }
 
 .charts{
-    /* margin-top: 30px; */
     width:100%;
     display: flex;
-    column-gap: 180px;
+    column-gap: 50px;
     justify-content: center;
     flex-wrap: wrap;
-    
 }
 
-.chart{
+.pieChart{
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: rgb(0, 0, 0,0.175);
     margin-top: 50px;
     display: flex;
     justify-content: center;
-    width:450px;
+    flex-wrap: wrap;
+    width:375px;
+    padding:10px;
     height:auto;
+    row-gap: 10px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 1px 1px 5px rgb(238, 238, 238);
+}
+.pieChart:hover{
+    transform: scale(1.05);
 }
 .result{
     margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items:center;
+    overflow: auto;
+    overflow-y: hidden;
 }
 @media screen and (max-width:300px) {
-    .chart{
+    .pieChart{
         display: flex;
         justify-content: center;
         width:250px !important;
         height:auto !important;
     }
-    
+}
+#submitDiv{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    column-gap:50px;
+}
+.bar{
+    box-shadow: 1px 1px 5px rgb(238, 238, 238);
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: rgb(0, 0, 0,0.175);
+    padding:5px;
+    width:575px;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 50px;
+}
+.bar:hover{
+    transform: scale(1.05);
+}
+#requiredText{
+    margin-top: 30px;
+    display: flex;
+    font-family: 'Quicksand', sans-serif;
+    text-align: right; 
+}
+.homeOptions{
+    margin-top: 50px;
+    margin-bottom: 90px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap:80px;
+    row-gap: 50px;
+}
+/* .calculateByUpload{
+    width:50;
+} */
+#homeDownloadLink{
+    text-decoration: none;
+    color: white;
+}
+.calculateByForm{
+    width: 395px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    border: 1px solid;
+    border-color: rgb(0, 0, 0,0.175);
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 1px 1px 5px rgb(238, 238, 238);
+}
+.calculateByUpload{
+    padding: 30px;
+    border: 1px solid;
+    border-color: rgb(0, 0, 0,0.175);
+    border-radius: 10px;
+    width: 395px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;  
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 1px 1px 5px rgb(238, 238, 238);
+}
+.calculateByUpload:hover{
+    transform: scale(1.05);
 }
 
+.calculateByForm:hover{
+    transform: scale(1.05);
+}
+
+
+@media screen and (max-width: 1039px) {
+        .homeOptions{
+            flex-direction: column;
+            align-items: center;
+        }
+    }
