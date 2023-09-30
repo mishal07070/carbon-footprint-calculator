@@ -6,6 +6,8 @@ import { useState } from "react";
 import Result from "./Result.js";
 
 export default function App() {
+  const [calculating, setCalculating] = useState(false);
+  const [err, setErr] = useState(null);
 
   const initialFossilInstance = {
     'facilityName': '',
@@ -91,7 +93,9 @@ export default function App() {
         wasteInstances={wasteInstances} setWasteInstances={setWasteInstances}
         travelInstances={travelInstances} setTravelInstances={setTravelInstances}
         offsetInstances={offsetInstances} setOffsetInstances={setOffsetInstances}
-        result={result} setResult={setResult} />}></Route>
+        result={result} setResult={setResult}
+        calculating={calculating} setCalculating={setCalculating} 
+        err={err} setErr={setErr}/>}></Route>
 
       <Route path="/Calculator" element={<Calculator
         initialFossilInstance={initialFossilInstance}
@@ -108,12 +112,12 @@ export default function App() {
         offsetInstances={offsetInstances} setOffsetInstances={setOffsetInstances} />}></Route>
 
       <Route path="/Result" element={<Result result={result} setResult={setResult}
-        fossilInstances={fossilInstances}
-        electricityInstances={electricityInstances}
-        waterInstances={waterInstances}
-        wasteInstances={wasteInstances}
-        travelInstances={travelInstances}
-        offsetInstances={offsetInstances} />}></Route>
+        fossilInstances={fossilInstances} setFossilInstances={setFossilInstances}
+        electricityInstances={electricityInstances} setElectricityInstances={setElectricityInstances}
+        waterInstances={waterInstances} setWaterInstances={setWaterInstances}
+        wasteInstances={wasteInstances} setWasteInstances={setWasteInstances}
+        travelInstances={travelInstances} setTravelInstances={setTravelInstances}
+        offsetInstances={offsetInstances} setOffsetInstances={setOffsetInstances} />}></Route>
     </Routes>
   );
 }

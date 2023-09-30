@@ -32,8 +32,8 @@ export default function Result(props) {
         datasets: [
             {
                 data: [0, 0, 0, 0, 0],
-                backgroundColor: ['#09BC8A', '#172A3A', '#75DDDD', "#a91fab", "#88a205"],
-                hoverBackgroundColor: ['#09BC8A', '#172A3A', '#75DDDD', "#a91fab", "#88a205"],
+                backgroundColor: ['#FFE45E', '#345995', '#03CEA4', "#FB4D3D", "#CA1551"],
+                hoverBackgroundColor: ['#FFE45E', '#345995', '#03CEA4', "#FB4D3D", "#CA1551"],
                 borderWidth: 1,
             },
         ],
@@ -43,8 +43,8 @@ export default function Result(props) {
         datasets: [
             {
                 data: [0, 0, 0],
-                backgroundColor: ['#DC143C', '#FFA500', "#4942E4"],
-                hoverBackgroundColor: ['#DC143C', '#FFA500', '#4942E4'],
+                backgroundColor: ['#B8C5D6', '#7FC8F8', "#2F4858"],
+                hoverBackgroundColor: ['#B8C5D6', '#7FC8F8', '#2F4858'],
                 borderWidth: 1,
             }
         ]
@@ -215,11 +215,11 @@ export default function Result(props) {
             <div className='charts'>
                 <div className='pieChart'>
                     <h3 style={{ textAlign: "center" }}>Component-wise distribution</h3>
-                    <Doughnut data={componentWise} options={{ cutout: '70%' }} />
+                    <Doughnut data={componentWise}  />
                 </div>
                 <div className='pieChart'>
                     <h3 style={{ textAlign: "center" }}>Scope-wise distribution</h3>
-                    <Doughnut data={scopeWise} options={{ cutout: '70%' }} />
+                    <Doughnut data={scopeWise}/>
                 </div>
                 <div className='bar'>
                     <h3 style={{ textAlign: "center" }}>Month-wise distribution</h3>
