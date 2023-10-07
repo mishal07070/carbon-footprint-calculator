@@ -423,3 +423,16 @@ h2 {
 #instructionsList{
     margin-right:10px;
 }
+.links{
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+.link{
+    font-size: 30px;
+    color: rgb(101, 101, 101);
+    transition: color 0.3s ease-in-out;
+}
+.link:hover{
+    color:black;
+}
