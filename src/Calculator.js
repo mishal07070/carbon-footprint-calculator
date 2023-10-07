@@ -12,7 +12,7 @@ import { faPlaneDeparture } from '@fortawesome/free-solid-svg-icons';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import AC from "./AC.png";
+import AC from "./images/AC.png";
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { useState } from 'react';
@@ -158,6 +158,17 @@ export default function Calculator(data) {
   return (
     loading ? <div><h1>Please Wait..</h1></div> :
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="calculatorDiv">
+        <div className="instructions">
+          <h1 style={{width:'100%',textAlign:'center'}}><b>Calculate your Carbon Footprint</b></h1>
+          <h2 id="instructionsH2">Instructions for filling out the form:</h2>
+          <ul id="instructionsList">
+            <li>For each tab, fill out the form and click on <b>'Save'</b> to save your changes.</li>
+            <li>To add another instance for the same tab, click on <b>'Add Another Instance'</b> after saving the current instance.</li>
+            <li>Use <b>'Go to Next/Previous Tab'</b> to navigate between the tabs.</li>
+            <li>Fields marked as &nbsp;<p style={{ display: 'inline', color: 'red' }}>*</p> are mandatory fields.</li>
+            <li>Ensure that you have saved your last instances in each tab. If you do not have the data for any particular Tab/Facility, choose any option for mandatory fields and enter <b>'0'</b> in the <b>'Amount/Distance'</b> fields.</li>
+          </ul>
+        </div>
         <Tabs value={activeTab} onChange={(event, value) => { changeTab(value) }} >
           <TabList underlinePlacement="bottom">
             <div className="tabsDiv">
@@ -190,7 +201,7 @@ export default function Calculator(data) {
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastFossilInstance} array={data.fossilInstances} setArray={data.setFossilInstances}></FacilityYearMonth>
                 <div className="inputs">
-                  <h3>Fuel Type: </h3>
+                  <h3>Fuel Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select required value={lastFossilInstance.fuelType ? lastFossilInstance.fuelType : null} placeholder="Choose Fuel Type" onChange={(event, value) => { handleChange(data.fossilInstances, data.setFossilInstances, value, data.fossilInstances.length - 1, 'fuelType') }} className="Select">
                     <Option value="CNG">CNG</Option>
                     <Option value="Petrol/Gasoline">Petrol/Gasoline</Option>
@@ -200,7 +211,7 @@ export default function Calculator(data) {
                   </Select>
                 </div>
 
-                <div className='inputs'><h3>Unit: </h3>
+                <div className='inputs'><h3>Unit<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select required value={lastFossilInstance.fuelUnit ? lastFossilInstance.fuelUnit : null} onChange={(event, value) => { handleChange(data.fossilInstances, data.setFossilInstances, value, data.fossilInstances.length - 1, 'fuelUnit') }} className="Select" placeholder="Choose Unit">
                     <Option value="kg">kg</Option>
                     <Option value="tonne">tonne</Option>
@@ -208,7 +219,7 @@ export default function Calculator(data) {
                     {lastFossilInstance.fuelType === 'CNG' || lastFossilInstance.fuelType === 'PNG' ? <Option value="cubic metre">cubic metre</Option> : null}
                   </Select>
                 </div>
-                <div className='inputs'><h3>Amount Consumed: </h3>
+                <div className='inputs'><h3>Amount Consumed<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Input required type="number" value={lastFossilInstance.fuelAmount ? lastFossilInstance.fuelAmount : ''} onChange={(event) => { handleInput(data.fossilInstances, data.setFossilInstances, event.target.value, data.fossilInstances.length - 1, 'fuelAmount') }} className="Select" placeholder='Enter Amount' />
                 </div>
               </form>
@@ -235,24 +246,24 @@ export default function Calculator(data) {
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastElectricityInstance} array={data.electricityInstances} setArray={data.setElectricityInstances}></FacilityYearMonth>
                 <div className="inputs">
-                  <h3>Electricity Type: </h3>
+                  <h3>Electricity Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastElectricityInstance.electricityType ? lastElectricityInstance.electricityType : null} onChange={(event, value) => { handleChange(data.electricityInstances, data.setElectricityInstances, value, data.electricityInstances.length - 1, 'electricityType') }} className="Select" placeholder="Choose Electricity Type">
                     <Option value="Non-Renewable">Non-Renewable</Option>
                     <Option value="Renewable">Renewable</Option>
                   </Select>
                 </div>
                 <div className='inputs'>
-                  <h3>Electricity Source: </h3>
+                  <h3>Electricity Source<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastElectricityInstance.electricitySource ? lastElectricityInstance.electricitySource : null} className="Select" placeholder="Choose Electricity Source" onChange={(event, value) => { handleChange(data.electricityInstances, data.setElectricityInstances, value, data.electricityInstances.length - 1, 'electricitySource') }}>
                     <Option value="Purchased">Purchased</Option>
                     <Option value="Self-Produced">Self-Produced</Option>
                   </Select>
                 </div>
-                <div className='inputs'><h3>Unit: </h3>
+                <div className='inputs'><h3>Unit<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastElectricityInstance.electricityUnit ? lastElectricityInstance.electricityUnit : null} onChange={(event, value) => { handleChange(data.electricityInstances, data.setElectricityInstances, value, data.electricityInstances.length - 1, 'electricityUnit') }} className="Select" placeholder="Choose Unit">
                     <Option value="kWH">kWH</Option>
                   </Select></div>
-                <div className='inputs'><h3>Amount Consumed: </h3><Input type="number" value={lastElectricityInstance.electricityAmount ? lastElectricityInstance.electricityAmount : ''} onChange={(event) => { handleChange(data.electricityInstances, data.setElectricityInstances, event.target.value, data.electricityInstances.length - 1, 'electricityAmount') }} className="Select" placeholder='Enter Amount' /></div>
+                <div className='inputs'><h3>Amount Consumed<p style={{ display: 'inline', color: 'red' }}>*</p> </h3><Input type="number" value={lastElectricityInstance.electricityAmount ? lastElectricityInstance.electricityAmount : ''} onChange={(event) => { handleChange(data.electricityInstances, data.setElectricityInstances, event.target.value, data.electricityInstances.length - 1, 'electricityAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
                 <Button onClick={() => { changeTab('Fugitive') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
@@ -268,22 +279,22 @@ export default function Calculator(data) {
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastWaterInstance} array={data.waterInstances} setArray={data.setWaterInstances}></FacilityYearMonth>
                 <div className="inputs">
-                  <h3>Water Type: </h3>
+                  <h3>Water Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastWaterInstance.waterType ? lastWaterInstance.waterType : null} onChange={(event, value) => { handleChange(data.waterInstances, data.setWaterInstances, value, data.waterInstances.length - 1, 'waterType') }} className="Select" placeholder="Choose Water Type">
                     <Option value="Supplied Water">Supplied Water</Option>
                     <Option value="Treated Water">Treated Water</Option>
                   </Select>
                 </div>
                 <div className='inputs'>
-                  <h3>Discharge Site: </h3>
+                  <h3>Discharge Site</h3>
                   <Input value={lastWaterInstance.waterDischargeSite ? lastWaterInstance.waterDischargeSite : ''} onChange={(event) => { handleInput(data.waterInstances, data.setWaterInstances, event.target.value, data.waterInstances.length - 1, 'waterDischargeSite') }} className="Select" placeholder='Enter Discharge Site' />
                 </div>
-                <div className='inputs'><h3>Unit: </h3>
+                <div className='inputs'><h3>Unit<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastWaterInstance.waterUnit ? lastWaterInstance.waterUnit : null} onChange={(event, value) => { handleChange(data.waterInstances, data.setWaterInstances, value, data.waterInstances.length - 1, 'waterUnit') }} className="Select" placeholder="Choose Unit">
                     <Option value="cubic metre">cubic metre</Option>
                     <Option value="million litres">million litres</Option>
                   </Select></div>
-                <div className='inputs'><h3>Amount: </h3><Input type="number" value={lastWaterInstance.waterAmount ? lastWaterInstance.waterAmount : ''} onChange={(event) => { handleInput(data.waterInstances, data.setWaterInstances, event.target.value, data.waterInstances.length - 1, 'waterAmount') }} className="Select" placeholder='Enter Amount' /></div>
+                <div className='inputs'><h3>Amount<p style={{ display: 'inline', color: 'red' }}>*</p> </h3><Input type="number" value={lastWaterInstance.waterAmount ? lastWaterInstance.waterAmount : ''} onChange={(event) => { handleInput(data.waterInstances, data.setWaterInstances, event.target.value, data.waterInstances.length - 1, 'waterAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
                 <Button onClick={() => { changeTab('Electricity') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
@@ -299,7 +310,7 @@ export default function Calculator(data) {
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastWasteInstance} array={data.wasteInstances} setArray={data.setWasteInstances}></FacilityYearMonth>
                 <div className='inputs'>
-                  <h3>Waste Type: </h3>
+                  <h3>Waste Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastWasteInstance.wasteType ? lastWasteInstance.wasteType : null} onChange={(event, value) => { handleChange(data.wasteInstances, data.setWasteInstances, value, data.wasteInstances.length - 1, 'wasteType') }} className="Select" placeholder="Choose Waste Type">
                     <Option value="Household Residue">Household Residue</Option>
                     <Option value="Food and Drink Waste">Food and Drink Waste</Option>
@@ -308,7 +319,7 @@ export default function Calculator(data) {
                   </Select>
                 </div>
                 <div className="inputs">
-                  <h3>Treatment Type: </h3>
+                  <h3>Treatment Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastWasteInstance.wasteTreatmentType ? lastWasteInstance.wasteTreatmentType : null} onChange={(event, value) => { handleChange(data.wasteInstances, data.setWasteInstances, value, data.wasteInstances.length - 1, 'wasteTreatmentType') }} className="Select" placeholder="Choose Treatment Type">
                     <Option value="Landfills">Landfills</Option>
                     {lastWasteInstance.wasteType === 'Food and Drink Waste' || lastWasteInstance.wasteType === 'Garden Waste' ? <Option value="Composting">Composting</Option> : null}
@@ -316,12 +327,12 @@ export default function Calculator(data) {
                     <Option value="Recycling">Recycling</Option>
                   </Select>
                 </div>
-                <div className='inputs'><h3>Unit: </h3>
+                <div className='inputs'><h3>Unit<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastWasteInstance.wasteUnit ? lastWasteInstance.wasteUnit : null} onChange={(event, value) => { handleChange(data.wasteInstances, data.setWasteInstances, value, data.wasteInstances.length - 1, 'wasteUnit') }} className="Select" placeholder="Choose Unit">
                     <Option value="kg">kg</Option>
                     <Option value="tonne">tonne</Option>
                   </Select></div>
-                <div className='inputs'><h3>Amount: </h3><Input type="number" value={lastWasteInstance.wasteAmount ? lastWasteInstance.wasteAmount : ''} onChange={(event) => { handleInput(data.wasteInstances, data.setWasteInstances, event.target.value, data.wasteInstances.length - 1, 'wasteAmount') }} className="Select" placeholder='Enter Amount' /></div>
+                <div className='inputs'><h3>Amount<p style={{ display: 'inline', color: 'red' }}>*</p> </h3><Input type="number" value={lastWasteInstance.wasteAmount ? lastWasteInstance.wasteAmount : ''} onChange={(event) => { handleInput(data.wasteInstances, data.setWasteInstances, event.target.value, data.wasteInstances.length - 1, 'wasteAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
                 <Button onClick={() => { changeTab('Water') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
@@ -337,7 +348,7 @@ export default function Calculator(data) {
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastTravelInstance} array={data.travelInstances} setArray={data.setTravelInstances}></FacilityYearMonth>
                 <div className='inputs'>
-                  <h3>Mode of Transport: </h3>
+                  <h3>Mode of Transport<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastTravelInstance.travelType ? lastTravelInstance.travelType : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'travelType') }} className="Select" placeholder="Choose Mode of Transport">
                     <Option value="Airways">Airways</Option>
                     <Option value="Roadways">Roadways</Option>
@@ -346,7 +357,7 @@ export default function Calculator(data) {
                 </div>
                 {lastTravelInstance.travelType === 'Airways' ?
                   <div className='inputs'>
-                    <h3>Flight Length: </h3>
+                    <h3>Flight Length<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                     <Select value={lastTravelInstance.airFlightLength ? lastTravelInstance.airFlightLength : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'airFlightLength') }} className="Select" placeholder="Choose Flight Length">
                       <Option value="Domestic">Domestic</Option>
                       <Option value="Short Haul">Short Haul</Option>
@@ -357,7 +368,7 @@ export default function Calculator(data) {
                   : null}
                 {lastTravelInstance.travelType === 'Roadways' ?
                   <div className='inputs'>
-                    <h3>Vehicle Ownership: </h3>
+                    <h3>Vehicle Ownership<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                     <Select value={lastTravelInstance.roadVehicleOwnership ? lastTravelInstance.roadVehicleOwnership : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'roadVehicleOwnership') }} className="Select" placeholder="Choose Vehicle Ownership">
                       <Option value="Personal">Personal</Option>
                       <Option value="Public">Public</Option>
@@ -366,7 +377,7 @@ export default function Calculator(data) {
                   : null}
                 {lastTravelInstance.travelType === 'Roadways' && lastTravelInstance.roadVehicleOwnership === 'Personal' ?
                   <div className='inputs'>
-                    <h3>Vehicle Type: </h3>
+                    <h3>Vehicle Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                     <Select value={lastTravelInstance.roadVehicleType ? lastTravelInstance.roadVehicleType : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'roadVehicleType') }} className="Select" placeholder="Choose Vehicle Type">
                       <Option value="Small Sized Car">Small Sized Car</Option>
                       <Option value="Medium Sized Car">Medium Sized Car</Option>
@@ -377,7 +388,7 @@ export default function Calculator(data) {
                   : null}
                 {lastTravelInstance.travelType === 'Roadways' && lastTravelInstance.roadVehicleOwnership === 'Public' ?
                   <div className='inputs'>
-                    <h3>Vehicle Type: </h3>
+                    <h3>Vehicle Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                     <Select value={lastTravelInstance.roadVehicleType ? lastTravelInstance.roadVehicleType : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'roadVehicleType') }} className="Select" placeholder="Choose Vehicle Type">
                       <Option value="Bus">Bus</Option>
                       <Option value="Taxi">Taxi</Option>
@@ -385,7 +396,7 @@ export default function Calculator(data) {
                   </div> : null}{
                   lastTravelInstance.travelType === 'Roadways' && lastTravelInstance.roadVehicleOwnership === 'Personal' && lastTravelInstance.roadVehicleType !== 'Motorcycle' ?
                     <div className='inputs'>
-                      <h3>Fuel Type: </h3>
+                      <h3>Fuel Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                       <Select value={lastTravelInstance.roadFuelType ? lastTravelInstance.roadFuelType : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'roadFuelType') }} className="Select" placeholder="Choose Fuel Type">
                         {lastTravelInstance.roadVehicleType !== 'Small Sized Car' ? <Option value="CNG">CNG</Option> : null}
                         <Option value="Petrol/Gasoline">Petrol/Gasoline</Option>
@@ -395,7 +406,7 @@ export default function Calculator(data) {
                     </div> : null
                 }
                 <div className="inputs">
-                  <h3>Distance Travelled(KM) : </h3>
+                  <h3>Distance Travelled(KM)<p style={{ display: 'inline', color: 'red' }}>*</p>  </h3>
                   <Input type="number" value={lastTravelInstance.travelDistance ? lastTravelInstance.travelDistance : ''} onChange={(event) => { handleInput(data.travelInstances, data.setTravelInstances, event.target.value, data.travelInstances.length - 1, 'travelDistance') }} className="Select" placeholder='Enter Approximate Distance' />
                 </div>
               </form>
@@ -413,19 +424,19 @@ export default function Calculator(data) {
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastOffsetInstance} array={data.offsetInstances} setArray={data.setOffsetInstances}></FacilityYearMonth>
                 <div className='inputs'>
-                  <h3>Number of Trees in the Facility: </h3>
+                  <h3>Number of Trees in the Facility<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetTrees ? lastOffsetInstance.offsetTrees : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetTrees') }} className="Select" placeholder='Enter Approximate Number' />
                 </div>
                 <div className="inputs">
-                  <h3>Area Covered Under Soil : </h3>
+                  <h3>Area Covered Under Soil<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetSoil ? lastOffsetInstance.offsetSoil : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetSoil') }} className="Select" placeholder='Enter Approximate Area' />
                 </div>
                 <div className="inputs">
-                  <h3>Area Covered Under Grass : </h3>
+                  <h3>Area Covered Under Grass<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetGrass ? lastOffsetInstance.offsetGrass : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetGrass') }} className="Select" placeholder='Enter Approximate Area' />
                 </div>
                 <div className="inputs">
-                  <h3>Area Covered Under Water : </h3>
+                  <h3>Area Covered Under Water<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetWater ? lastOffsetInstance.offsetWater : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetWater') }} className="Select" placeholder='Enter Approximate Area' />
                 </div>
               </form>

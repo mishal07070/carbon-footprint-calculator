@@ -4,6 +4,7 @@ import Calculator from "./Calculator.js"
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Result from "./Result.js";
+import Contact from "./Contact.js";
 
 export default function App() {
   const [calculating, setCalculating] = useState(false);
@@ -118,6 +119,8 @@ export default function App() {
         wasteInstances={wasteInstances} setWasteInstances={setWasteInstances}
         travelInstances={travelInstances} setTravelInstances={setTravelInstances}
         offsetInstances={offsetInstances} setOffsetInstances={setOffsetInstances} />}></Route>
+
+      <Route path="/Contact" element={<Contact></Contact>}></Route>
     </Routes>
   );
 }

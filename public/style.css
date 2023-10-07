@@ -1,178 +1,209 @@
-#root{
+#root {
     font-family: 'Quicksand', sans-serif;
     background-color: rgb(251, 251, 251);
 }
-.header{
+
+.header {
     flex-direction: row;
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap:30px;
+    gap: 30px;
     margin-top: 60px;
 }
-.headerImg{
+
+.headerImg {
     display: flex;
     align-items: center;
-    width:200px;
-    margin:20px;
+    width: 200px;
+    margin: 20px;
     margin-bottom: 30px;
 }
-.logos{
+
+.logos {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.logoImg{
-    width:10px;
+
+.logoImg {
+    width: 10px;
     /* height: auto; */
 }
-.landingText{
+
+.landingText {
     font-family: 'Quicksand', sans-serif;
     text-align: center;
-    margin:auto;
+    margin: auto;
     margin-left: 30px;
     margin-right: 30px;
-    width:500px;
+    width: 500px;
 }
-h1{
+
+h1 {
     font-family: 'Quicksand', sans-serif;
     font-size: 50px;
-    color:rgb(9, 67, 21)
+    color: rgb(9, 67, 21)
 }
-#homeText{
+
+#homeText {
     font-family: 'Quicksand', sans-serif;
     margin-top: 20px;
-    font-size:25px;
-    color:rgb(16, 90, 31);
+    font-size: 25px;
+    color: rgb(16, 90, 31);
 }
-h3{
+
+h3 {
     font-family: 'Quicksand', sans-serif;
-    font-size:25px;
-    color:rgb(16, 90, 31);
+    font-size: 25px;
+    color: rgb(16, 90, 31);
 }
 
 @media screen and (max-width: 750px) {
-    .headerImg{
-        width:30%;
+    .headerImg {
+        width: 30%;
         /* height:20%; */
     }
-    .inputs{
+    .aboutImg{
+        width:80%;
+    }
+    
+    .inputs {
         flex-direction: column;
         align-items: center;
     }
-    .calcForm{
-        align-items: center !important; 
-        width:100% !important;
+    
+    .calcForm {
+        align-items: center !important;
+        width: 100% !important;
         flex-wrap: nowrap !important;
     }
-    .pieChart{
+    
+    .pieChart {
         display: flex;
         justify-content: center;
-        width:300px !important;
-        height:auto !important; 
+        width: 300px !important;
+        height: auto !important;
     }
-    .bar{
+    
+    .bar {
         width: 500px !important;
     }
 }
 
 @media screen and (max-width: 500px) {
-    #getStarted{
+    #getStarted {
         font-size: 15px !important;
         height: 40px !important;
-        width:200px !important;
+        width: 200px !important;
     }
     
-    .headerImg{
-        width:40%;
+    .headerImg {
+        width: 40%;
         /* height:50%; */
     }
-    h1{
+    .aboutImg{
+        width:90%;
+    }
+    
+    h1 {
         font-size: 40px;
     }
-    #homeText{
-        font-size:20px;
+    
+    #homeText {
+        font-size: 20px;
     }
-    .calculateByForm{
-        width:100% !important;
+    
+    .calculateByForm {
+        width: 100% !important;
     }
-    .calculateByUpload{
-        width:100% !important;
+    
+    .calculateByUpload {
+        width: 100% !important;
     }
 }
-#getStarted{
-    margin-top:30px;
-    width:300px;
+
+#getStarted {
+    margin-top: 30px;
+    width: 300px;
     font-size: 18px;
     font-family: 'Quicksand', sans-serif;
-    height:30px;
+    height: 30px;
     border-radius: 15px;
     background-color: rgb(0, 128, 49);
     color: white;
     transition: background-color 0.3s ease-in-out;
 }
-#getStarted:hover{
+
+#getStarted:hover {
     background-color: rgb(0, 89, 34);
     
 }
 
-#navbar{
-    background-color: rgb(0, 128, 49) !important;
+#navbar {
+    background-color:#006633 !important;
     font-size: 20px;
     font-family: 'Quicksand', sans-serif;
     padding-left: 10px;
 }
-.nav-item{
+
+.nav-item {
     padding-top: 7.5px;
     padding-bottom: 7.5px;
-    padding-right:20px;
-}
-.navItem{
-    text-decoration: none;
-    color:white;
-}
-.footer{
-    font-family: 'Quicksand', sans-serif;
-}
-.tabsDiv{
-    margin:auto;
-    margin-top: 50px;
-    display:flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    column-gap:30px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 20px;
-    font-weight:bold;
-}
-.tabContent{
-    border-radius:10px !important;
-    color:black !important;
+    padding-right: 20px;
 }
 
-.time{
+.navItem {
+    text-decoration: none;
+    color:#FFCC00 !important;
+}
+
+.footer {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.tabsDiv {
     margin: auto;
-    width:250px;
-    margin-top:80px;
-    margin-bottom:80px;
-    display:flex;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tabContent {
+    border-radius: 10px !important;
+    color: black !important;
+}
+
+.time {
+    margin: auto;
+    width: 250px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    display: flex;
     flex-direction: column;
     align-items: center;
     column-gap: 40px;
     row-gap: 50px;
     flex-wrap: wrap;
 }
-.Select{
+
+.Select {
     width: 250px;
 }
 
-.formDiv{
+.formDiv {
     margin-top: 60px;
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
 }
-.calcForm{
+
+.calcForm {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -180,108 +211,120 @@ h3{
     column-gap: 30px;
     row-gap: 50px;
 }
-.inputs{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    column-gap:30px;
-    row-gap:20px;
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 30px;
+    row-gap: 20px;
     align-items: center;
 }
-h2{
+
+h2 {
     font-family: 'Quicksand', sans-serif;
     color: rgb(16, 90, 31);
 }
 
-.charts{
-    width:100%;
+.charts {
+    width: 100%;
     display: flex;
     column-gap: 50px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.pieChart{
+.pieChart {
     border: 1px solid;
     border-radius: 10px;
-    border-color: rgb(0, 0, 0,0.175);
+    border-color: rgb(0, 0, 0, 0.175);
     margin-top: 50px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width:375px;
-    padding:10px;
-    height:auto;
+    width: 375px;
+    padding: 10px;
+    height: auto;
     background-color: white;
     row-gap: 10px;
     transition: transform 0.3s ease-in-out;
     box-shadow: 1px 1px 5px rgb(238, 238, 238);
 }
-.pieChart:hover{
+
+.pieChart:hover {
     transform: scale(1.05);
 }
-.result{
+
+.result {
     margin-top: 50px;
     margin-bottom: 50px;
     padding-bottom: 30px;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
     overflow: auto;
     overflow-y: hidden;
 }
+
 @media screen and (max-width:300px) {
-    .pieChart{
+    .pieChart {
         display: flex;
         justify-content: center;
-        width:250px !important;
-        height:auto !important;
+        width: 250px !important;
+        height: auto !important;
     }
 }
-#submitDiv{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    column-gap:50px;
+
+#submitDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 50px;
     margin-top: 30px;
 }
-.bar{
+
+.bar {
     box-shadow: 1px 1px 5px rgb(238, 238, 238);
     background-color: white;
     border: 1px solid;
     border-radius: 10px;
-    border-color: rgb(0, 0, 0,0.175);
-    padding:5px;
-    width:575px;
+    border-color: rgb(0, 0, 0, 0.175);
+    padding: 5px;
+    width: 575px;
     transition: transform 0.3s ease-in-out;
     margin-top: 50px;
 }
-.bar:hover{
+
+.bar:hover {
     transform: scale(1.05);
 }
-#requiredText{
+
+#requiredText {
     margin-top: 30px;
     display: flex;
     font-family: 'Quicksand', sans-serif;
-    text-align: right; 
+    text-align: right;
 }
-.homeOptions{
+
+.homeOptions {
     margin-top: 50px;
-    padding-bottom: 90px;
+    /* padding-bottom: 90px; */
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    column-gap:80px;
+    column-gap: 80px;
     row-gap: 50px;
 }
+
 /* .calculateByUpload{
     width:50;
 } */
-#homeDownloadLink{
+#homeDownloadLink {
     text-decoration: none;
     color: white;
 }
-.calculateByForm{
+
+.calculateByForm {
     background-color: white;
     width: 395px;
     display: flex;
@@ -290,37 +333,93 @@ h2{
     align-items: center;
     padding: 30px;
     border: 1px solid;
-    border-color: rgb(0, 0, 0,0.175);
+    border-color: rgb(0, 0, 0, 0.175);
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
     box-shadow: 1px 1px 5px rgb(238, 238, 238);
 }
-.calculateByUpload{
+
+.calculateByUpload {
     background-color: white;
     padding: 30px;
     border: 1px solid;
-    border-color: rgb(0, 0, 0,0.175);
+    border-color: rgb(0, 0, 0, 0.175);
     border-radius: 10px;
     width: 395px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;  
+    justify-content: flex-start;
     transition: transform 0.3s ease-in-out;
     box-shadow: 1px 1px 5px rgb(238, 238, 238);
 }
-.calculateByUpload:hover{
+
+.calculateByUpload:hover {
     transform: scale(1.05);
 }
 
-.calculateByForm:hover{
+.calculateByForm:hover {
     transform: scale(1.05);
 }
 
 
 @media screen and (max-width: 1039px) {
-        .homeOptions{
-            flex-direction: column;
-            align-items: center;
-        }
+    .homeOptions {
+        flex-direction: column;
+        align-items: center;
     }
+}
+.homeAbout{
+    margin-top: 60px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap:60px;
+    row-gap:40px;
+    justify-content: center;
+}
+.aboutText{
+    width:500px;
+    margin:20px;
+}
+.aboutImg{
+    object-fit: contain;
+}
+
+@media screen and (max-width: 1200px) {
+    .aboutText{
+        width:80%;
+    }
+}
+.calculateDiv{
+    display: flex;
+    justify-content: center;
+    width:100%;
+    margin-bottom: 50px;
+}
+#calculate{
+    font-size: 43px;
+}
+.contactUs{
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap:100px;
+    row-gap:50px;
+}
+.cardP{
+    font-family: 'Quicksand', sans-serif !important;
+}
+.calculatorDiv{
+    padding-top: 30px;
+}
+#instructionsH2{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+#instructionsList{
+    margin-right:10px;
+}

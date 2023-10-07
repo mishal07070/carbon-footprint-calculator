@@ -43,8 +43,8 @@ export default function Result(props) {
         datasets: [
             {
                 data: [0, 0, 0],
-                backgroundColor: ['#B8C5D6', '#7FC8F8', "#2F4858"],
-                hoverBackgroundColor: ['#B8C5D6', '#7FC8F8', '#2F4858'],
+                backgroundColor: ['#034101', '#059a00', "#3df136"],
+                hoverBackgroundColor: ['#034101', '#059a00', '#3df136'],
                 borderWidth: 1,
             }
         ]
@@ -66,8 +66,8 @@ export default function Result(props) {
             {
                 label: 'Total Emission in Kgs of CO2',
                 data: [],
-                backgroundColor: 'rgba(226, 204, 0,0.5)',
-                borderColor: 'rgba(190, 171, 2)',
+                backgroundColor: 'rgb(127, 200, 248,0.5)',
+                borderColor: 'rgb(0, 106, 177)',
                 borderWidth: 3,
             }
         ]
@@ -215,11 +215,11 @@ export default function Result(props) {
             <div className='charts'>
                 <div className='pieChart'>
                     <h3 style={{ textAlign: "center" }}>Component-wise distribution</h3>
-                    <Doughnut data={componentWise}  />
+                    <Doughnut data={componentWise} />
                 </div>
                 <div className='pieChart'>
                     <h3 style={{ textAlign: "center" }}>Scope-wise distribution</h3>
-                    <Doughnut data={scopeWise}/>
+                    <Doughnut data={scopeWise} />
                 </div>
                 <div className='bar'>
                     <h3 style={{ textAlign: "center" }}>Month-wise distribution</h3>
