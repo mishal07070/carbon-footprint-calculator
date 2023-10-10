@@ -37,6 +37,36 @@ async function processFossilSheet(workbook) {
     });
     return newFossilInstances
 }
+async function processFugitiveSheet(workbook) {
+    const fugitive = workbook.getWorksheet('Fugitive');
+    const newFugitiveInstances = [];
+    fugitive.eachRow((row, rowNumber) => {
+        if (rowNumber >= 8) {
+            const newInstance = {
+                'facilityName': '',
+                'year': '',
+                'month': '',
+                'applicationType':'',
+                'fugitiveNet':null,
+                'number':'',
+            };
+            newInstance.facilityName = fugitive.getCell(`B${rowNumber}`).value;
+            newInstance.year = fugitive.getCell(`C${rowNumber}`).value;
+            newInstance.month = fugitive.getCell(`D${rowNumber}`).value;
+            newInstance.applicationType = fugitive.getCell(`E${rowNumber}`).value;
+            newInstance.number = fugitive.getCell(`F${rowNumber}`).value;
+            if (newInstance.applicationType === null || newInstance.number === null) {
+                throw new Error('Data is inconsistent with the template requirements.');
+            }
+            else {
+                newInstance.fugitiveNet = (newInstance.number * emissionFactors.fugitive[newInstance.applicationType]);
+                console.log(newInstance);
+            }
+            newFugitiveInstances.push(newInstance);
+        }
+    });
+    return newFugitiveInstances
+}
 
 async function processElectricitySheet(workbook) {
     const electricity = workbook.getWorksheet('Electricity');
@@ -229,6 +259,7 @@ self.addEventListener('message', async (e) => {
     try {
         await workbook.xlsx.load(file);
         const fossilData = await processFossilSheet(workbook);
+        const fugitiveData = await processFugitiveSheet(workbook);
         const electricityData = await processElectricitySheet(workbook);
         const waterData = await processWaterSheet(workbook);
         const wasteData = await processWasteSheet(workbook);
@@ -239,6 +270,7 @@ self.addEventListener('message', async (e) => {
         self.postMessage({
             result: 'Calculation completed successfully',
             fossilData: fossilData,
+            fugitiveData: fugitiveData,
             electricityData: electricityData,
             waterData: waterData,
             wasteData: wasteData,

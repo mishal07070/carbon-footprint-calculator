@@ -1,19 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer"
-
+import { createRoot } from 'react-dom/client';
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container); 
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
      <Navbar></Navbar> 
       <App />
       <Footer></Footer>
     </BrowserRouter>
-  </React.StrictMode>,
-  rootElement
+  </React.StrictMode>
 );

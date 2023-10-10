@@ -17,7 +17,7 @@ function handleInput(array, setArray, value, index, field) {
 
 const FacilityYearMonth = (data) => {
     return (
-        <form className="calcForm">
+        <div className="calcForm">
             <div className='inputs'>
                 <h3>Facility<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                 <Select className="Select" value={data.lastInstance.facilityName ? data.lastInstance.facilityName : null} placeholder="Choose Facility" onChange={(event, value) => { handleChange(data.array, data.setArray, value, data.array.length - 1, 'facilityName') }}>
@@ -29,7 +29,10 @@ const FacilityYearMonth = (data) => {
             </div>
             <div className='inputs'>
                 <h3>Year<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
-                <Input type="number" value={data.lastInstance.year ? data.lastInstance.year : ''} onChange={(event) => { handleInput(data.array, data.setArray, event.target.value, data.array.length - 1, 'year') }} className="Select" placeholder='Enter Year' />
+                <Select value={data.lastInstance.year ? data.lastInstance.year : null} onChange={(event, value) => { handleChange(data.array, data.setArray, value, data.array.length - 1, 'year') }} className="Select" placeholder='Choose Year'>
+                    <Option value="2022">2022</Option>
+                    <Option value="2023">2023</Option>
+                </Select>
             </div>
             <div className="inputs">
                 <h3>Month<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
@@ -48,7 +51,7 @@ const FacilityYearMonth = (data) => {
                     <Option value="December">December</Option>
                 </Select>
             </div>
-        </form>
+        </div>
     );
 }
 export default FacilityYearMonth;

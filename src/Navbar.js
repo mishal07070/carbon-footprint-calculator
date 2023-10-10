@@ -27,7 +27,7 @@ export default function Navbar() {
               <Link className="navItem" to="https://iitk.ac.in/ckc/" onClick={handleNavigation}>About CKCEPS</Link>
             </li>
             <li className="nav-item">
-              <Link className="navItem" to="/Contact" onClick={handleNavigation}>Contact Us</Link>
+              <Link className="navItem" to="/Connect" onClick={handleNavigation}>Connect</Link>
             </li>
           </ul>
         </div>

@@ -27,6 +27,7 @@ export default function Calculator(data) {
   useEffect(() => {
     window.scrollTo(0, 0);
     data.setFossilInstances([data.initialFossilInstance]);
+    data.setFugitiveInstances([data.initialFugitiveInstance]);
     data.setElectricityInstances([data.initialElectricityInstance]);
     data.setWaterInstances([data.initialWaterInstance]);
     data.setWasteInstances([data.initialWasteInstance]);
@@ -59,7 +60,7 @@ export default function Calculator(data) {
   };
 
   const [activeTab, setActiveTab] = useState('Fossil Fuel');
-  function changeTab(value) { setActiveTab(value); window.scrollTo(0, 0) };
+  function changeTab(value) { setActiveTab(value);};
 
   function calculateFuel(index) {
     const instance = data.fossilInstances[index];
@@ -67,18 +68,30 @@ export default function Calculator(data) {
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.fossilInstances];
+      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['fuelNet'] = (instance.fuelAmount * emissionFactors.fuels[instance.fuelType][instance.fuelUnit]);
       data.setFossilInstances(updatedInstances);
-      console.log(data.fossilInstances);
     }
   }
-
+  function calculateFugitive(index) {
+    const instance = data.fugitiveInstances[index];
+    if (instance.applicationType === ''|| instance.number === '') window.alert('Please fill out all the fields.');
+    else {
+      window.alert('Saved Successfully.')
+      const updatedInstances = [...data.fugitiveInstances];
+      updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
+      updatedInstances[index]['fugitiveNet'] = (instance.number * emissionFactors.fugitive[instance.applicationType]);
+      data.setFugitiveInstances(updatedInstances);
+    }
+  }
+  
   function calculateElectricity(index) {
     const instance = data.electricityInstances[index];
     if (instance.electricityType === '' || instance.electricitySource === '' || instance.electricityUnit === '' || instance.electricityAmount === '') window.alert('Please fill out all the fields.');
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.electricityInstances];
+      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['electricityNet'] = (instance.electricityAmount * emissionFactors.electricity[instance.electricityType]);
       data.setElectricityInstances(updatedInstances);
     }
@@ -90,20 +103,21 @@ export default function Calculator(data) {
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.waterInstances];
+      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['waterNet'] = (instance.waterAmount * emissionFactors.water[instance.waterType][instance.waterUnit]);
       data.setWaterInstances(updatedInstances);
     }
   }
-
+  
   function calculateWaste(index) {
     const instance = data.wasteInstances[index];
     if (instance.wasteType === '' || instance.wasteTreatmentType === '' || instance.wasteUnit === '' || instance.wasteAmount === '') window.alert('Please fill out all the fields.');
     else {
       window.alert('Saved Sucessfully.');
       const updatedInstances = [...data.wasteInstances];
+      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['wasteNet'] = (instance.wasteAmount * emissionFactors.waste[instance.wasteTreatmentType][instance.wasteType][instance.wasteUnit]);
       data.setWasteInstances(updatedInstances);
-      console.log(updatedInstances[index]['wasteNet']);
     }
   }
   function calculateOffset(index) {
@@ -112,11 +126,12 @@ export default function Calculator(data) {
     else {
       window.alert('Saved Sucessfully.');
       const updatedInstances = [...data.offsetInstances];
+      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['offsetNet'] = (instance.offsetTrees * emissionFactors.offset.Trees + instance.offsetGrass * emissionFactors.offset['Grass Area'] + instance.offsetSoil * emissionFactors.offset['Soil Area'] + instance.offsetWater * emissionFactors.offset['Water Body']);
       data.setOffsetInstances(updatedInstances);
     }
   }
-
+  
   function calculateTravel(index) {
     const instance = data.travelInstances[index];
     if (instance.travelType === '' || instance.travelDistance === '') window.alert('Please fill out all the fields.');
@@ -126,6 +141,7 @@ export default function Calculator(data) {
         else {
           window.alert('Saved Sucessfully.');
           const updatedInstances = [...data.travelInstances];
+          // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
           updatedInstances[index]['travelNet'] = (instance.travelDistance * emissionFactors.travel[instance.travelType][instance.airFlightLength]);
           data.setTravelInstances(updatedInstances);
         }
@@ -133,22 +149,22 @@ export default function Calculator(data) {
       else if (instance.travelType === 'Roadways') {
         if (instance.roadVehicleOwnership === '' || instance.roadVehicleType === '' || (instance.roadVehicleOwnership === 'Personal' && instance.roadFuelType === '')) window.alert('Please fill out all the fields.')
         else {
-          window.alert('Saved Sucessfully.');
-          const updatedInstances = [...data.travelInstances];
-          updatedInstances[index]['travelNet'] = instance.roadVehicleOwnership === 'Personal' ? (instance.travelDistance * (instance.roadVehicleType !== 'Motorcycle' ? emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType][instance.roadFuelType] : emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType])) : (instance.travelDistance * emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType]);
-          data.setTravelInstances(updatedInstances);
-          console.log(updatedInstances[index]['wasteNet']);
-          console.log(updatedInstances[index]['travelNet'])
-        }
-      }
+      window.alert('Saved Sucessfully.');
+      const updatedInstances = [...data.travelInstances];
+      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
+      updatedInstances[index]['travelNet'] = instance.roadVehicleOwnership === 'Personal' ? (instance.travelDistance * (instance.roadVehicleType !== 'Motorcycle' ? emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType][instance.roadFuelType] : emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType])) : (instance.travelDistance * emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType]);
+      data.setTravelInstances(updatedInstances);
+    }
+  }
       else {
         window.alert('Saved Sucessfully.');
       }
 
     }
   }
-
+  
   const lastFossilInstance = data.fossilInstances[data.fossilInstances.length - 1];
+  const lastFugitiveInstance = data.fugitiveInstances[data.fugitiveInstances.length - 1];
   const lastElectricityInstance = data.electricityInstances[data.electricityInstances.length - 1];
   const lastWaterInstance = data.waterInstances[data.waterInstances.length - 1];
   const lastWasteInstance = data.wasteInstances[data.wasteInstances.length - 1];
@@ -172,25 +188,25 @@ export default function Calculator(data) {
         <Tabs value={activeTab} onChange={(event, value) => { changeTab(value) }} >
           <TabList underlinePlacement="bottom">
             <div className="tabsDiv">
-              <Tab disabled className="tabContent" value="Fossil Fuel" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Fossil Fuel" indicatorPlacement="bottom">
                 <FontAwesomeIcon icon={faGasPump} />&nbsp;&nbsp;Fossil Fuel
               </Tab>
-              <Tab disabled className="tabContent" value="Fugitive" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Fugitive" indicatorPlacement="bottom">
                 <img style={{ width: "25px", marginBottom: "0px" }} alt="acIcon" src={AC} />&nbsp;&nbsp;Fugitive
               </Tab>
-              <Tab disabled className="tabContent" value="Electricity" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Electricity" indicatorPlacement="bottom">
                 <FontAwesomeIcon icon={faBolt} />&nbsp;&nbsp;Electricity
               </Tab>
-              <Tab disabled className="tabContent" value="Water" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Water" indicatorPlacement="bottom">
                 <FontAwesomeIcon icon={faWater} />&nbsp;&nbsp; Water
               </Tab>
-              <Tab disabled className="tabContent" value="Waste" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Waste" indicatorPlacement="bottom">
                 <FontAwesomeIcon icon={faTrash} />&nbsp;&nbsp; Waste
               </Tab>
-              <Tab disabled className="tabContent" value="Travel" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Travel" indicatorPlacement="bottom">
                 <FontAwesomeIcon icon={faPlaneDeparture} />&nbsp;&nbsp; Travel
               </Tab>
-              <Tab disabled className="tabContent" value="Offset" indicatorPlacement="bottom">
+              <Tab className="tabContent" value="Offset" indicatorPlacement="bottom">
                 <FontAwesomeIcon icon={faLeaf} />&nbsp;&nbsp; Offset
               </Tab>
             </div>
@@ -226,18 +242,33 @@ export default function Calculator(data) {
               <div id="submitDiv">
                 <Button style={{ marginTop: '30px' }} onClick={() => calculateFuel(data.fossilInstances.length - 1)} id="getStarted">Save</Button>
                 {lastFossilInstance.fuelNet !== '' ? <Button onClick={() => { data.setFossilInstances([...data.fossilInstances, data.initialFossilInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
-                <Button onClick={() => { changeTab('Fugitive') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Next Tab</Button>
               </div>
             </motion.div>
           </TabPanel>
 
           <TabPanel value="Fugitive">
-            <div id="submitDiv">
-              <Button onClick={() => { changeTab('Fossil Fuel') }} style={{ marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
-              <Button style={{ marginTop: '30px' }} onClick={() => calculateFuel(data.fossilInstances.length - 1)} id="getStarted">Save</Button>
-              {/* {lastInstance.fuelNet!==''?<Button onClick={() => {data.setFossilInstances([...data.fossilInstances, data.initialFossilInstance]);window.scrollTo(0,0)}} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button>:null} */}
-              <Button onClick={() => { changeTab('Electricity') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Next Tab</Button>
-            </div>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="formDiv">
+              <form className="calcForm">
+                <FacilityYearMonth lastInstance={lastFugitiveInstance} array={data.fugitiveInstances} setArray={data.setFugitiveInstances}></FacilityYearMonth>
+                <div className="inputs">
+                  <h3>Application Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
+                  <Select value={lastFugitiveInstance.applicationType ? lastFugitiveInstance.applicationType : null} onChange={(event, value) => { handleChange(data.fugitiveInstances, data.setFugitiveInstances, value, data.fugitiveInstances.length - 1, 'applicationType') }} className="Select" placeholder="Choose Application Type">
+                    <Option value="Domestic Refrigeration">Domestic Refrigeration</Option>
+                    <Option value="Commercial Refrigeration">Commercial Refrigeration</Option>
+                    <Option value="Industrial Refrigeration">Industrial Refrigeration</Option>
+                    <Option value="Residential and Commercial A/Cs">Residential and Commercial A/Cs</Option>
+                  </Select>
+                </div>
+                <div className='inputs'>
+                  <h3>Number of Units<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
+                  <Input type="number" value={lastFugitiveInstance.number ? lastFugitiveInstance.number : ''} className="Select" placeholder="Enter Number of Units" onChange={(event) => { handleInput(data.fugitiveInstances, data.setFugitiveInstances,event.target.value, data.fugitiveInstances.length - 1, 'number') }}/>
+                </div>
+              </form>
+              <div id="submitDiv">
+                <Button style={{ marginTop: '30px' }} onClick={() => { calculateFugitive(data.fugitiveInstances.length - 1) }} id="getStarted">Save</Button>
+                {lastFugitiveInstance.fugitiveNet !== '' ? <Button onClick={() => { data.setFugitiveInstances([...data.fugitiveInstances, data.initialFugitiveInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
+              </div>
+            </motion.div>
 
           </TabPanel>
 
@@ -248,8 +279,8 @@ export default function Calculator(data) {
                 <div className="inputs">
                   <h3>Electricity Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
                   <Select value={lastElectricityInstance.electricityType ? lastElectricityInstance.electricityType : null} onChange={(event, value) => { handleChange(data.electricityInstances, data.setElectricityInstances, value, data.electricityInstances.length - 1, 'electricityType') }} className="Select" placeholder="Choose Electricity Type">
-                    <Option value="Non-Renewable">Non-Renewable</Option>
-                    <Option value="Renewable">Renewable</Option>
+                    <Option value="Coal/Thermal">Coal/Thermal</Option>
+                    <Option value="Solar">Solar</Option>
                   </Select>
                 </div>
                 <div className='inputs'>
@@ -263,13 +294,12 @@ export default function Calculator(data) {
                   <Select value={lastElectricityInstance.electricityUnit ? lastElectricityInstance.electricityUnit : null} onChange={(event, value) => { handleChange(data.electricityInstances, data.setElectricityInstances, value, data.electricityInstances.length - 1, 'electricityUnit') }} className="Select" placeholder="Choose Unit">
                     <Option value="kWH">kWH</Option>
                   </Select></div>
-                <div className='inputs'><h3>Amount Consumed<p style={{ display: 'inline', color: 'red' }}>*</p> </h3><Input type="number" value={lastElectricityInstance.electricityAmount ? lastElectricityInstance.electricityAmount : ''} onChange={(event) => { handleChange(data.electricityInstances, data.setElectricityInstances, event.target.value, data.electricityInstances.length - 1, 'electricityAmount') }} className="Select" placeholder='Enter Amount' /></div>
+                <div className='inputs'><h3>Amount Consumed<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
+                <Input type="number" value={lastElectricityInstance.electricityAmount ? lastElectricityInstance.electricityAmount : ''} onChange={(event) => { handleChange(data.electricityInstances, data.setElectricityInstances, event.target.value, data.electricityInstances.length - 1, 'electricityAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
-                <Button onClick={() => { changeTab('Fugitive') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
                 <Button style={{ marginTop: '30px' }} onClick={() => { calculateElectricity(data.electricityInstances.length - 1) }} id="getStarted">Save</Button>
                 {lastElectricityInstance.electricityNet !== '' ? <Button onClick={() => { data.setElectricityInstances([...data.electricityInstances, data.initialElectricityInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
-                <Button onClick={() => { changeTab('Water') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Next Tab</Button>
               </div>
             </motion.div>
           </TabPanel>
@@ -297,10 +327,8 @@ export default function Calculator(data) {
                 <div className='inputs'><h3>Amount<p style={{ display: 'inline', color: 'red' }}>*</p> </h3><Input type="number" value={lastWaterInstance.waterAmount ? lastWaterInstance.waterAmount : ''} onChange={(event) => { handleInput(data.waterInstances, data.setWaterInstances, event.target.value, data.waterInstances.length - 1, 'waterAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
-                <Button onClick={() => { changeTab('Electricity') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
                 <Button style={{ marginTop: '30px' }} onClick={() => calculateWater(data.waterInstances.length - 1)} id="getStarted">Save</Button>
                 {lastWaterInstance.waterNet !== '' ? <Button onClick={() => { data.setWaterInstances([...data.waterInstances, data.initialWaterInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
-                <Button onClick={() => { changeTab('Waste') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Next Tab</Button>
               </div>
             </motion.div>
           </TabPanel>
@@ -335,10 +363,8 @@ export default function Calculator(data) {
                 <div className='inputs'><h3>Amount<p style={{ display: 'inline', color: 'red' }}>*</p> </h3><Input type="number" value={lastWasteInstance.wasteAmount ? lastWasteInstance.wasteAmount : ''} onChange={(event) => { handleInput(data.wasteInstances, data.setWasteInstances, event.target.value, data.wasteInstances.length - 1, 'wasteAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
-                <Button onClick={() => { changeTab('Water') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
                 <Button style={{ marginTop: '30px' }} onClick={() => calculateWaste(data.wasteInstances.length - 1)} id="getStarted">Save</Button>
                 {lastWasteInstance.wasteNet !== '' ? <Button onClick={() => { data.setWasteInstances([...data.wasteInstances, data.initialWasteInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
-                <Button onClick={() => { changeTab('Travel') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Next Tab</Button>
               </div>
             </motion.div>
           </TabPanel>
@@ -411,10 +437,8 @@ export default function Calculator(data) {
                 </div>
               </form>
               <div id="submitDiv">
-                <Button onClick={() => { changeTab('Waste') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
                 <Button style={{ marginTop: '30px' }} onClick={() => calculateTravel(data.travelInstances.length - 1)} id="getStarted">Save</Button>
                 {lastTravelInstance.travelNet !== '' ? <Button onClick={() => { data.setTravelInstances([...data.travelInstances, data.initialTravelInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
-                <Button onClick={() => { changeTab('Offset') }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Go to Next Tab</Button>
               </div>
             </motion.div>
           </TabPanel>
@@ -428,20 +452,19 @@ export default function Calculator(data) {
                   <Input type="number" value={lastOffsetInstance.offsetTrees ? lastOffsetInstance.offsetTrees : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetTrees') }} className="Select" placeholder='Enter Approximate Number' />
                 </div>
                 <div className="inputs">
-                  <h3>Area Covered Under Soil<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
+                  <h3>Area Covered Under Soil(m<sup>2</sup>)<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetSoil ? lastOffsetInstance.offsetSoil : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetSoil') }} className="Select" placeholder='Enter Approximate Area' />
                 </div>
                 <div className="inputs">
-                  <h3>Area Covered Under Grass<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
+                  <h3>Area Covered Under Grass(m<sup>2</sup>)<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetGrass ? lastOffsetInstance.offsetGrass : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetGrass') }} className="Select" placeholder='Enter Approximate Area' />
                 </div>
                 <div className="inputs">
-                  <h3>Area Covered Under Water<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
+                  <h3>Area Covered Under Water(m<sup>2</sup>)<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input type="number" value={lastOffsetInstance.offsetWater ? lastOffsetInstance.offsetWater : ''} onChange={(event) => { handleInput(data.offsetInstances, data.setOffsetInstances, event.target.value, data.offsetInstances.length - 1, 'offsetWater') }} className="Select" placeholder='Enter Approximate Area' />
                 </div>
               </form>
               <div id="submitDiv">
-                <Button onClick={() => { changeTab('Travel') }} style={{ marginTop: '30px' }} id="getStarted">Go to Previous Tab</Button>
                 <Button style={{ marginTop: '30px' }} onClick={() => calculateOffset(data.offsetInstances.length - 1)} id="getStarted">Save</Button>
                 {lastOffsetInstance.offsetNet !== '' ? <Button onClick={() => { data.setOffsetInstances([...data.offsetInstances, data.initialOffsetInstance]); window.scrollTo(0, 0) }} style={{ margin: '0', marginTop: '30px' }} id="getStarted">Add Another Instance</Button> : null}
                 <Button style={{ marginTop: '30px' }} onClick={showResults} id="getStarted">Finalise and Show Results</Button>

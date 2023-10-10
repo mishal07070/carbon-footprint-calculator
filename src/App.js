@@ -19,6 +19,14 @@ export default function App() {
     'fuelAmount': '',
     'fuelNet': ''
   }
+  const initialFugitiveInstance = {
+    'facilityName': '',
+    'year': '',
+    'month': '',
+    'applicationType': '',
+    'number': '',
+    'fugitiveNet': ''
+  }
   const initialElectricityInstance = {
     'facilityName': '',
     'year': '',
@@ -72,6 +80,7 @@ export default function App() {
     'offsetNet': ''
   }
   const [fossilInstances, setFossilInstances] = useState([initialFossilInstance]);
+  const [fugitiveInstances, setFugitiveInstances] = useState([initialFugitiveInstance]);
   const [electricityInstances, setElectricityInstances] = useState([initialElectricityInstance]);
   const [waterInstances, setWaterInstances] = useState([initialWaterInstance]);
   const [wasteInstances, setWasteInstances] = useState([initialWasteInstance]);
@@ -83,12 +92,14 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home
         initialFossilInstance={initialFossilInstance}
+        initialFugitiveInstance={initialFugitiveInstance}
         initialElectricityInstance={initialElectricityInstance}
         initialWaterInstance={initialWaterInstance}
         initialWasteInstance={initialWasteInstance}
         initialTravelInstance={initialTravelInstance}
         initialOffsetInstance={initialOffsetInstance}
         fossilInstances={fossilInstances} setFossilInstances={setFossilInstances}
+        fugitiveInstances={fugitiveInstances} setFugitiveInstances={setFugitiveInstances}
         electricityInstances={electricityInstances} setElectricityInstances={setElectricityInstances}
         waterInstances={waterInstances} setWaterInstances={setWaterInstances}
         wasteInstances={wasteInstances} setWasteInstances={setWasteInstances}
@@ -100,12 +111,14 @@ export default function App() {
 
       <Route path="/Calculator" element={<Calculator
         initialFossilInstance={initialFossilInstance}
+        initialFugitiveInstance={initialFugitiveInstance}
         initialElectricityInstance={initialElectricityInstance}
         initialWaterInstance={initialWaterInstance}
         initialWasteInstance={initialWasteInstance}
         initialTravelInstance={initialTravelInstance}
         initialOffsetInstance={initialOffsetInstance}
         fossilInstances={fossilInstances} setFossilInstances={setFossilInstances}
+        fugitiveInstances={fugitiveInstances} setFugitiveInstances={setFugitiveInstances}
         electricityInstances={electricityInstances} setElectricityInstances={setElectricityInstances}
         waterInstances={waterInstances} setWaterInstances={setWaterInstances}
         wasteInstances={wasteInstances} setWasteInstances={setWasteInstances}
@@ -114,13 +127,14 @@ export default function App() {
 
       <Route path="/Result" element={<Result result={result} setResult={setResult}
         fossilInstances={fossilInstances} setFossilInstances={setFossilInstances}
+        fugitiveInstances={fugitiveInstances} setFugitiveInstances={setFugitiveInstances}
         electricityInstances={electricityInstances} setElectricityInstances={setElectricityInstances}
         waterInstances={waterInstances} setWaterInstances={setWaterInstances}
         wasteInstances={wasteInstances} setWasteInstances={setWasteInstances}
         travelInstances={travelInstances} setTravelInstances={setTravelInstances}
         offsetInstances={offsetInstances} setOffsetInstances={setOffsetInstances} />}></Route>
 
-      <Route path="/Contact" element={<Contact></Contact>}></Route>
+      <Route path="/Connect" element={<Contact></Contact>}></Route>
     </Routes>
   );
 }

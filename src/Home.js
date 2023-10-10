@@ -46,7 +46,7 @@ export default function Home(data) {
         const worker = new Worker(new URL('./worker.js', import.meta.url));
 
         worker.onmessage = (e) => {
-          const { error, fossilData, electricityData, waterData, wasteData, travelData, offsetData } = e.data;
+          const { error, fossilData, fugitiveData, electricityData, waterData, wasteData, travelData, offsetData } = e.data;
           if (error) {
             console.error('Error processing the Excel file. ', error);
             data.setErr(1);
@@ -55,6 +55,7 @@ export default function Home(data) {
             worker.terminate();
           } else {
             data.setFossilInstances([...data.fossilInstances, ...fossilData]);
+            data.setFugitiveInstances([...data.fugitiveInstances, ...fugitiveData]);
             data.setElectricityInstances([...data.electricityInstances, ...electricityData]);
             data.setWaterInstances([...data.waterInstances, ...waterData]);
             data.setWasteInstances([...data.wasteInstances, ...wasteData]);
