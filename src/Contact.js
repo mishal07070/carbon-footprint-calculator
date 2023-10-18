@@ -1,6 +1,5 @@
 import CKCLogo from "./images/ckclogo.png"
 import SEELogo from "./images/seelogo.png"
-import Ashish from "./images/ashish-garg.jpg"
 import Card from '@mui/joy/Card';
 import { motion } from 'framer-motion';
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -18,7 +17,7 @@ const Contact = () => {
                 <h2 style={{textAlign:"center"}}>Chandrakanta Kesavan Centre, IIT Kanpur</h2>
                 <p className="cardP">Block-A Near Media Lab <br/>
                     Department of Sustainable Energy Engineering<br/>
-                    Indian Institute of Technology, Kanpur
+                    Indian Institute of Technology, Kanpur,<br/>
                     Uttar Pradesh, 208016</p>
                 <div className="links">
                     <a className="link" href="https://www.x.com/ckcepcs_seeiitk/"><FontAwesomeIcon icon={faXTwitter} /></a>

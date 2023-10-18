@@ -98,7 +98,7 @@ export default function Home(data) {
       <Calculating calculating={data.calculating} err={data.err} errMsg={errMsg}></Calculating>
       <div className="header">
         <div className="landingText">
-          <h1><b>Calculate your Carbon Footprint</b></h1>
+          <h1><b>What is your Carbon Footprint?</b></h1>
           <h3 id="homeText">Get to know your Carbon Footprint using our Calculator.</h3>
         </div>
         <div className="logos">
@@ -109,13 +109,13 @@ export default function Home(data) {
       <div className="homeAbout">
         <img className="aboutImg" src={iitk} alt="iitk"/>
         <div className="aboutText">
-          <h2 style={{textAlign:"center",marginBottom:'30px'}}>What is a Carbon Footprint?</h2>
+          <h2 style={{textAlign:"center",marginBottom:'30px'}}>About Carbon Footprint</h2>
           <p>A carbon footprint measures the total greenhouse gas emissions, primarily carbon dioxide and methane, associated with a nation's or individual's activities. In India, the current carbon footprint scenario is challenging. As a populous and rapidly developing country, India faces growing emissions due to industrialization, urbanization, and increased energy consumption.</p>
           <p> The energy sector, particularly coal, is a major contributor. However, India has shown commitment to address this issue by investing in renewable energy, implementing policies to promote sustainability, and enhancing public awareness. Managing India's carbon footprint is crucial for combating climate change while ensuring sustainable development for its vast population.</p>
         </div>
       </div>
       <div className="calculateDiv">
-        <h1 id="calculate"><b>Calculate</b></h1>
+        <h1 id="calculate"><b>Calculate your Carbon Footprint</b></h1>
       </div>
       <div className="homeOptions">
         <div className="calculateByForm">

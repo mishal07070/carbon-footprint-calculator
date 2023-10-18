@@ -60,38 +60,36 @@ export default function Calculator(data) {
   };
 
   const [activeTab, setActiveTab] = useState('Fossil Fuel');
-  function changeTab(value) { setActiveTab(value);};
+  function changeTab(value) { setActiveTab(value); };
 
   function calculateFuel(index) {
     const instance = data.fossilInstances[index];
-    if (instance.fuelType === '' || (instance.vehicle === '' & instance.fuelUnit === '') || instance.fuelAmount === '') window.alert('Please fill out all the fields.');
+    if (instance.fuelType === '' || (instance.vehicle === '' & instance.fuelUnit === '') || instance.fuelAmount === '') window.alert('Please fill out all the mandatory fields.');
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.fossilInstances];
-      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['fuelNet'] = (instance.fuelAmount * emissionFactors.fuels[instance.fuelType][instance.fuelUnit]);
       data.setFossilInstances(updatedInstances);
     }
   }
   function calculateFugitive(index) {
     const instance = data.fugitiveInstances[index];
-    if (instance.applicationType === ''|| instance.number === '') window.alert('Please fill out all the fields.');
+    if (instance.applicationType === '' || instance.number === '') window.alert('Please fill out all the mandatory fields.');
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.fugitiveInstances];
-      updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
+      updatedInstances[index]['year'] = Number(updatedInstances[index]['year']);
       updatedInstances[index]['fugitiveNet'] = (instance.number * emissionFactors.fugitive[instance.applicationType]);
       data.setFugitiveInstances(updatedInstances);
     }
   }
-  
+
   function calculateElectricity(index) {
     const instance = data.electricityInstances[index];
-    if (instance.electricityType === '' || instance.electricitySource === '' || instance.electricityUnit === '' || instance.electricityAmount === '') window.alert('Please fill out all the fields.');
+    if (instance.electricityType === '' || instance.electricitySource === '' || instance.electricityUnit === '' || instance.electricityAmount === '') window.alert('Please fill out all the mandatory fields.');
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.electricityInstances];
-      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['electricityNet'] = (instance.electricityAmount * emissionFactors.electricity[instance.electricityType]);
       data.setElectricityInstances(updatedInstances);
     }
@@ -99,23 +97,21 @@ export default function Calculator(data) {
 
   function calculateWater(index) {
     const instance = data.waterInstances[index];
-    if (instance.waterType === '' || instance.waterDischargeSite === '' || instance.waterUnit === '' || instance.waterAmount === '') window.alert('Please fill out all the fields.');
+    if (instance.waterType === '' || instance.waterDischargeSite === '' || instance.waterUnit === '' || instance.waterAmount === '') window.alert('Please fill out all the mandatory fields.');
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.waterInstances];
-      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['waterNet'] = (instance.waterAmount * emissionFactors.water[instance.waterType][instance.waterUnit]);
       data.setWaterInstances(updatedInstances);
     }
   }
-  
+
   function calculateWaste(index) {
     const instance = data.wasteInstances[index];
-    if (instance.wasteType === '' || instance.wasteTreatmentType === '' || instance.wasteUnit === '' || instance.wasteAmount === '') window.alert('Please fill out all the fields.');
+    if (instance.wasteType === '' || instance.wasteTreatmentType === '' || instance.wasteUnit === '' || instance.wasteAmount === '') window.alert('Please fill out all the mandatory fields.');
     else {
       window.alert('Saved Sucessfully.');
       const updatedInstances = [...data.wasteInstances];
-      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['wasteNet'] = (instance.wasteAmount * emissionFactors.waste[instance.wasteTreatmentType][instance.wasteType][instance.wasteUnit]);
       data.setWasteInstances(updatedInstances);
     }
@@ -126,43 +122,47 @@ export default function Calculator(data) {
     else {
       window.alert('Saved Sucessfully.');
       const updatedInstances = [...data.offsetInstances];
-      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
       updatedInstances[index]['offsetNet'] = (instance.offsetTrees * emissionFactors.offset.Trees + instance.offsetGrass * emissionFactors.offset['Grass Area'] + instance.offsetSoil * emissionFactors.offset['Soil Area'] + instance.offsetWater * emissionFactors.offset['Water Body']);
       data.setOffsetInstances(updatedInstances);
     }
   }
-  
+
   function calculateTravel(index) {
     const instance = data.travelInstances[index];
-    if (instance.travelType === '' || instance.travelDistance === '') window.alert('Please fill out all the fields.');
+    if (instance.travelType === '' || instance.travelDistance === '') window.alert('Please fill out all the mandatory fields.');
     else {
       if (instance.travelType === 'Airways') {
-        if (instance.airFlightLength === '' || instance.travelDistance === '') window.alert('Please fill out all the fields.')
+        if (instance.airFlightLength === '' || instance.travelDistance === '') window.alert('Please fill out all the mandatory fields.')
         else {
           window.alert('Saved Sucessfully.');
           const updatedInstances = [...data.travelInstances];
-          // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
           updatedInstances[index]['travelNet'] = (instance.travelDistance * emissionFactors.travel[instance.travelType][instance.airFlightLength]);
           data.setTravelInstances(updatedInstances);
         }
       }
       else if (instance.travelType === 'Roadways') {
-        if (instance.roadVehicleOwnership === '' || instance.roadVehicleType === '' || (instance.roadVehicleOwnership === 'Personal' && instance.roadFuelType === '')) window.alert('Please fill out all the fields.')
+        if (instance.roadVehicleOwnership === '' || instance.roadVehicleType === '' || (instance.roadVehicleOwnership === 'Personal' && instance.roadFuelType === '')) window.alert('Please fill out all the mandatory fields.')
         else {
-      window.alert('Saved Sucessfully.');
-      const updatedInstances = [...data.travelInstances];
-      // updatedInstances[index]['year']=Number(updatedInstances[index]['year']);
-      updatedInstances[index]['travelNet'] = instance.roadVehicleOwnership === 'Personal' ? (instance.travelDistance * (instance.roadVehicleType !== 'Motorcycle' ? emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType][instance.roadFuelType] : emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType])) : (instance.travelDistance * emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType]);
-      data.setTravelInstances(updatedInstances);
-    }
-  }
-      else {
-        window.alert('Saved Sucessfully.');
+          window.alert('Saved Sucessfully.');
+          const updatedInstances = [...data.travelInstances];
+          updatedInstances[index]['travelNet'] = instance.roadVehicleOwnership === 'Personal' ? (instance.travelDistance * (instance.roadVehicleType !== 'Motorcycle' ? emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType][instance.roadFuelType] : emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType])) : (instance.travelDistance * emissionFactors.travel[instance.travelType][instance.roadVehicleOwnership][instance.roadVehicleType]);
+          data.setTravelInstances(updatedInstances);
+        }
+      }
+      else if (instance.travelType === 'Railways') {
+        if (instance.railType === '') window.alert('Please fill out all the mandatory fields')
+        else {
+          window.alert('Saved Sucessfully.');
+          const updatedInstances = [...data.travelInstances];
+          updatedInstances[index]['travelNet'] = emissionFactors.travel[instance.travelType][instance.railType] * instance.travelDistance;
+          data.setTravelInstances(updatedInstances);
+          console.log(updatedInstances);
+        }
       }
 
     }
   }
-  
+
   const lastFossilInstance = data.fossilInstances[data.fossilInstances.length - 1];
   const lastFugitiveInstance = data.fugitiveInstances[data.fugitiveInstances.length - 1];
   const lastElectricityInstance = data.electricityInstances[data.electricityInstances.length - 1];
@@ -175,7 +175,7 @@ export default function Calculator(data) {
     loading ? <div><h1>Please Wait..</h1></div> :
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="calculatorDiv">
         <div className="instructions">
-          <h1 style={{width:'100%',textAlign:'center'}}><b>Calculate your Carbon Footprint</b></h1>
+          <h1 style={{ width: '100%', textAlign: 'center' }}><b>Calculate your Carbon Footprint</b></h1>
           <h2 id="instructionsH2">Instructions for filling out the form:</h2>
           <ul id="instructionsList">
             <li>For each tab, fill out the form and click on <b>'Save'</b> to save your changes.</li>
@@ -247,7 +247,7 @@ export default function Calculator(data) {
           </TabPanel>
 
           <TabPanel value="Fugitive">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="formDiv">
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="formDiv">
               <form className="calcForm">
                 <FacilityYearMonth lastInstance={lastFugitiveInstance} array={data.fugitiveInstances} setArray={data.setFugitiveInstances}></FacilityYearMonth>
                 <div className="inputs">
@@ -261,7 +261,7 @@ export default function Calculator(data) {
                 </div>
                 <div className='inputs'>
                   <h3>Number of Units<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
-                  <Input type="number" value={lastFugitiveInstance.number ? lastFugitiveInstance.number : ''} className="Select" placeholder="Enter Number of Units" onChange={(event) => { handleInput(data.fugitiveInstances, data.setFugitiveInstances,event.target.value, data.fugitiveInstances.length - 1, 'number') }}/>
+                  <Input type="number" value={lastFugitiveInstance.number ? lastFugitiveInstance.number : ''} className="Select" placeholder="Enter Number of Units" onChange={(event) => { handleInput(data.fugitiveInstances, data.setFugitiveInstances, event.target.value, data.fugitiveInstances.length - 1, 'number') }} />
                 </div>
               </form>
               <div id="submitDiv">
@@ -295,7 +295,7 @@ export default function Calculator(data) {
                     <Option value="kWH">kWH</Option>
                   </Select></div>
                 <div className='inputs'><h3>Amount Consumed<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
-                <Input type="number" value={lastElectricityInstance.electricityAmount ? lastElectricityInstance.electricityAmount : ''} onChange={(event) => { handleChange(data.electricityInstances, data.setElectricityInstances, event.target.value, data.electricityInstances.length - 1, 'electricityAmount') }} className="Select" placeholder='Enter Amount' /></div>
+                  <Input type="number" value={lastElectricityInstance.electricityAmount ? lastElectricityInstance.electricityAmount : ''} onChange={(event) => { handleChange(data.electricityInstances, data.setElectricityInstances, event.target.value, data.electricityInstances.length - 1, 'electricityAmount') }} className="Select" placeholder='Enter Amount' /></div>
               </form>
               <div id="submitDiv">
                 <Button style={{ marginTop: '30px' }} onClick={() => { calculateElectricity(data.electricityInstances.length - 1) }} id="getStarted">Save</Button>
@@ -428,6 +428,16 @@ export default function Calculator(data) {
                         <Option value="Petrol/Gasoline">Petrol/Gasoline</Option>
                         <Option value="Diesel">Diesel</Option>
                         <Option value="Electric">Electric</Option>
+                      </Select>
+                    </div> : null
+                }
+                {
+                  lastTravelInstance.travelType === 'Railways' ?
+                    <div className='inputs'>
+                      <h3>Rail Type<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>
+                      <Select value={lastTravelInstance.railType ? lastTravelInstance.railType : null} onChange={(event, value) => { handleChange(data.travelInstances, data.setTravelInstances, value, data.travelInstances.length - 1, 'railType') }} className="Select" placeholder="Choose Rail Type">
+                        <Option value="National Railways">National Railways</Option>
+                        <Option value="Metro">Metro</Option>
                       </Select>
                     </div> : null
                 }

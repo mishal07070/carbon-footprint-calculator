@@ -14,7 +14,7 @@ export default function Calculating(props) {
                         {calculating ?
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                                 <h4 style={{ display: "flex", alignItems: "center" }}><CircularProgress variant="solid" color="success" size="sm" value={25} />&nbsp;&nbsp;Calculating. Please Wait.</h4>
-                                <h5>Please do not the press back button, or refresh this page.</h5>
+                                <h5>This may take a while. Please do not the press back button, or refresh this page.</h5>
                             </div>
                             : (err?
                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>

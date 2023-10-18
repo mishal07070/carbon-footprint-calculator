@@ -1,5 +1,7 @@
 #root {
     font-family: 'Quicksand', sans-serif;
+}
+body{
     background-color: rgb(251, 251, 251);
 }
 
@@ -290,7 +292,7 @@ h2 {
     border-radius: 10px;
     border-color: rgb(0, 0, 0, 0.175);
     padding: 5px;
-    width: 575px;
+    width: 800px;
     transition: transform 0.3s ease-in-out;
     margin-top: 50px;
 }
@@ -435,4 +437,7 @@ h2 {
 }
 .link:hover{
     color:black;
+}
+#calculate{
+    text-align: center;
 }

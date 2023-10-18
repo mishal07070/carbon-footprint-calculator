@@ -152,6 +152,10 @@
                 "Bus": 0.0965,
                 "Taxi": 0.20826
             }
+        },
+        "Railways":{
+            "National Railways":0.03549,
+            "Metro":0.02861
         }
     },
     "offset":{

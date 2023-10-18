@@ -66,6 +66,7 @@ export default function App() {
     'roadVehicleOwnership': '',
     'roadVehicleType': '',
     'roadFuelType': '',
+    'railType':'',
     'travelDistance': '',
     'travelNet': ''
   }

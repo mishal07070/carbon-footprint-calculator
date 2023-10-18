@@ -216,6 +216,7 @@ async function processTravelSheet(workbook) {
                 'travelType': '',
                 'airFlightLength': '',
                 'roadVehicleOwnership': '',
+                'railType':'',
                 'roadVehicleType': '',
                 'roadFuelType': '',
                 'travelDistance': '',
@@ -225,11 +226,12 @@ async function processTravelSheet(workbook) {
             newInstance.year = travel.getCell(`C${rowNumber}`).value;
             newInstance.month = travel.getCell(`D${rowNumber}`).value;
             newInstance.travelType = travel.getCell(`E${rowNumber}`).value;
-            newInstance.airFlightLength = travel.getCell(`F${rowNumber}`).value;
-            newInstance.roadVehicleOwnership = travel.getCell(`G${rowNumber}`).value;
-            newInstance.roadVehicleType = travel.getCell(`H${rowNumber}`).value;
-            newInstance.roadFuelType = travel.getCell(`I${rowNumber}`).value;
-            newInstance.travelDistance = travel.getCell(`J${rowNumber}`).value;
+            newInstance.railType = travel.getCell(`F${rowNumber}`).value;
+            newInstance.airFlightLength = travel.getCell(`G${rowNumber}`).value;
+            newInstance.roadVehicleOwnership = travel.getCell(`H${rowNumber}`).value;
+            newInstance.roadVehicleType = travel.getCell(`I${rowNumber}`).value;
+            newInstance.roadFuelType = travel.getCell(`J${rowNumber}`).value;
+            newInstance.travelDistance = travel.getCell(`K${rowNumber}`).value;
 
             if (newInstance.travelType === null || newInstance.travelDistance === null) throw new Error('Data is inconsistent with the template requirements.');
             else {
@@ -243,6 +245,12 @@ async function processTravelSheet(workbook) {
                     if (newInstance.roadVehicleOwnership === null || newInstance.roadVehicleType === null || (newInstance.roadVehicleOwnership === 'Personal' && newInstance.roadFuelType === '')) throw new Error('Data is inconsistent with the template requirements.');
                     else {
                         newInstance.travelNet = newInstance.roadVehicleOwnership === 'Personal' ? (newInstance.travelDistance * (newInstance.roadVehicleType !== 'Motorcycle' ? emissionFactors.travel[newInstance.travelType][newInstance.roadVehicleOwnership][newInstance.roadVehicleType][newInstance.roadFuelType] : emissionFactors.travel[newInstance.travelType][newInstance.roadVehicleOwnership][newInstance.roadVehicleType])) : (newInstance.travelDistance * emissionFactors.travel[newInstance.travelType][newInstance.roadVehicleOwnership][newInstance.roadVehicleType]);
+                    }
+                }
+                else if (newInstance.travelType === 'Railways') {
+                    if (newInstance.railType === null)throw new Error('Data is inconsistent with the template requirements.');
+                    else {
+                        newInstance.travelNet = (newInstance.travelDistance * emissionFactors.travel[newInstance.travelType][newInstance.railType]);
                     }
                 }
             }
