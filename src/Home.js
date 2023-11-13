@@ -22,6 +22,7 @@ export default function Home(data) {
   useEffect(() => {
     window.scrollTo(0, 0);
     data.setFossilInstances([]);
+    data.setFugitiveInstances([]);
     data.setElectricityInstances([]);
     data.setWaterInstances([]);
     data.setWasteInstances([]);

@@ -377,7 +377,7 @@ export default function Result(props) {
 
     if (!totalEmission) {
         return (
-            <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} style={{ textAlign: 'center', marginTop: '35vh' }}>Oops! it appears that you did not fill the form correctly. Please go back and fill the form again.</motion.h1>
+            <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} style={{ textAlign: 'center', marginTop: '35vh' }}>Oops! it appears that you did not fill the form correctly, or uploaded an incomplete Excel Sheet. Please go back and fill the form again.</motion.h1>
         )
     }
     props.setResult(1);

@@ -172,7 +172,7 @@ export default function Calculator(data) {
   const lastOffsetInstance = data.offsetInstances[data.offsetInstances.length - 1];
 
   return (
-    loading ? <div><h1>Please Wait..</h1></div> :
+    loading ? <div style={{display:"flex",justifyContent:'center',marginTop:'20%'}}><h1>Please Wait..</h1></div> :
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="calculatorDiv">
         <div className="instructions">
           <h1 style={{ width: '100%', textAlign: 'center' }}><b>Calculate your Carbon Footprint</b></h1>
