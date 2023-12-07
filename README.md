@@ -33,12 +33,14 @@ The Carbon Footprint Calculator allows users to input data for different scopes 
 - The user interface is designed to be intuitive, allowing users to easily input data and view results.
 
 - Clear instructions and tooltips are provided to guide users in entering accurate data.
+- The user can either fill out a form, or upload a populated excel sheet and get the results.
 
 ## Technologies Used
 
 - **React.js**: The frontend of the application is built using React.js, a popular JavaScript library for building user interfaces.
 
 - **Chart.js**: Chart.js is used for creating interactive charts that display carbon emissions data.
+- **ExcelJS** : For calculations of emission values from the excel sheet uploaded by the user.
 
 - **HTML/CSS**: Standard web technologies are used for structuring the application and styling it for a visually appealing user experience.
 
