@@ -3,6 +3,7 @@
 ## Introduction
 
 The Carbon Footprint Calculator is a web application developed using React.js and Chart.js. This project aims to help individuals and organizations estimate their carbon footprint by considering various scope-wise parameters, including Scope 1 (fossil fuel and fugitives), Scope 2 (electricity), and Scope 3 (water and waste). This calculator provides a user-friendly interface for data input and visualizes the carbon emissions data using interactive charts.
+Deployed at : https://carboncalculators.netlify.app/
 
 ## Features
 
