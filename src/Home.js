@@ -49,10 +49,8 @@ export default function Home(data) {
         worker.onmessage = (e) => {
           const { error, fossilData, fugitiveData, electricityData, waterData, wasteData, travelData, offsetData } = e.data;
           if (error) {
-            console.error('Error processing the Excel file. ', error);
             data.setErr(1);
             setErrMsg(error);
-            console.log(errMsg);
             worker.terminate();
           } else {
             data.setFossilInstances([...data.fossilInstances, ...fossilData]);
@@ -73,7 +71,6 @@ export default function Home(data) {
       } catch (error) {
         data.setErr(1);
         setErrMsg(error);
-        console.log(errMsg);
         setProcessedFile(1);
         data.setCalculating(false);
       }

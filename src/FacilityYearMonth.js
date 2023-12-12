@@ -1,19 +1,11 @@
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
-import Input from '@mui/joy/Input';
 
 function handleChange(array, setArray, value, index, field) {
     const updatedInstances = [...array];
     updatedInstances[index][field] = value;
     setArray(updatedInstances);
 };
-
-function handleInput(array, setArray, value, index, field) {
-    const updatedInstances = [...array];
-    updatedInstances[index][field] = value;
-    setArray(updatedInstances);
-};
-
 
 const FacilityYearMonth = (data) => {
     return (

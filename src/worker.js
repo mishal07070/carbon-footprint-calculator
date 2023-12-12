@@ -7,6 +7,7 @@ import ExcelJS from 'exceljs';
 
 // eslint-disable-next-line no-restricted-globals
 async function processFossilSheet(workbook) {
+    console.log('reached fossil')
     const fossil = workbook.getWorksheet('Fossil Fuel');
     const newFossilInstances = [];
     fossil.eachRow((row, rowNumber) => {
@@ -38,6 +39,7 @@ async function processFossilSheet(workbook) {
     return newFossilInstances
 }
 async function processFugitiveSheet(workbook) {
+    console.log('reached fugi')
     const fugitive = workbook.getWorksheet('Fugitive');
     const newFugitiveInstances = [];
     fugitive.eachRow((row, rowNumber) => {
@@ -69,6 +71,7 @@ async function processFugitiveSheet(workbook) {
 }
 
 async function processElectricitySheet(workbook) {
+    console.log('reached elec')
     const electricity = workbook.getWorksheet('Electricity');
     const newElectricityInstances = [];
     electricity.eachRow((row, rowNumber) => {
@@ -103,6 +106,7 @@ async function processElectricitySheet(workbook) {
 }
 
 async function processWaterSheet(workbook) {
+    console.log('reached water')
     const water = workbook.getWorksheet('Water');
     const newWaterInstances = [];
     water.eachRow((row, rowNumber) => {
@@ -137,6 +141,7 @@ async function processWaterSheet(workbook) {
 }
 
 async function processWasteSheet(workbook) {
+    console.log('reached waste')
     const waste = workbook.getWorksheet('Waste');
     const newWasteInstances = [];
     waste.eachRow((row, rowNumber) => {
@@ -171,6 +176,7 @@ async function processWasteSheet(workbook) {
 }
 
 async function processOffsetSheet(workbook) {
+    console.log('reached offset')
     const offset = workbook.getWorksheet('Offset');
     const newOffsetInstances = [];
     offset.eachRow((row, rowNumber) => {
@@ -205,6 +211,7 @@ async function processOffsetSheet(workbook) {
 }
 
 async function processTravelSheet(workbook) {
+    console.log('reached travel')
     const travel = workbook.getWorksheet('Travel');
     const newTravelInstances = [];
     travel.eachRow((row, rowNumber) => {

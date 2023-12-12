@@ -78,7 +78,6 @@ export default function Calculator(data) {
     else {
       window.alert('Saved Successfully.')
       const updatedInstances = [...data.fugitiveInstances];
-      updatedInstances[index]['year'] = Number(updatedInstances[index]['year']);
       updatedInstances[index]['fugitiveNet'] = (instance.number * emissionFactors.fugitive[instance.applicationType]);
       data.setFugitiveInstances(updatedInstances);
     }
@@ -272,6 +271,8 @@ export default function Calculator(data) {
 
           </TabPanel>
 
+
+
           <TabPanel value="Electricity">
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="formDiv">
               <form className="calcForm">
@@ -316,7 +317,7 @@ export default function Calculator(data) {
                   </Select>
                 </div>
                 <div className='inputs'>
-                  <h3>Discharge Site</h3>
+                  <h3>Discharge Site<p style={{ display: 'inline', color: 'red' }}>*</p></h3>
                   <Input value={lastWaterInstance.waterDischargeSite ? lastWaterInstance.waterDischargeSite : ''} onChange={(event) => { handleInput(data.waterInstances, data.setWaterInstances, event.target.value, data.waterInstances.length - 1, 'waterDischargeSite') }} className="Select" placeholder='Enter Discharge Site' />
                 </div>
                 <div className='inputs'><h3>Unit<p style={{ display: 'inline', color: 'red' }}>*</p> </h3>

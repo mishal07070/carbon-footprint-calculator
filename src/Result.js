@@ -115,10 +115,10 @@ export default function Result(props) {
             scopeWise.datasets[0].data[0] += parseFloat(fossilInstance.fuelNet) / 1000;
 
             if (fossilInstance.month !== null && fossilInstance.year !== null) {
-                if (parseFloat(fossilInstance.year) === '2022') {
+                if (fossilInstance.year == '2022') {
                     monthWise.datasets[0].data[monthMapping[fossilInstance.month] - 1] += parseFloat(fossilInstance.fuelNet) / 1000;
                 }
-                else if (parseFloat(fossilInstance.year) === '2023') {
+                else if (fossilInstance.year == '2023') {
                     monthWise.datasets[1].data[monthMapping[fossilInstance.month] - 1] += parseFloat(fossilInstance.fuelNet) / 1000;
                 }
             }
@@ -147,14 +147,14 @@ export default function Result(props) {
             }
         }
     });
-
+    
     fugitiveInstances.forEach((fugitiveInstance) => {
         if (fugitiveInstance.fugitiveNet !== '' && fugitiveInstance.fugitiveNet !== null) {
             totalEmission = parseFloat(totalEmission) + parseFloat(fugitiveInstance.fugitiveNet) / 1000;
-
+            
             componentWise.datasets[0].data[1] += parseFloat(fugitiveInstance.fugitiveNet) / 1000;
             scopeWise.datasets[0].data[0] += parseFloat(fugitiveInstance.fugitiveNet) / 1000;
-
+            
             if (fugitiveInstance.month !== null && fugitiveInstance.year !== null) {
                 if (fugitiveInstance.year == 2022) {
                     monthWise.datasets[0].data[monthMapping[fugitiveInstance.month] - 1] += parseFloat(fugitiveInstance.fugitiveNet) / 1000;
@@ -373,7 +373,6 @@ export default function Result(props) {
 
     totalEmission = (Number(parseFloat(totalEmission).toFixed(2)));
     totalOffset = (Number(parseFloat(totalOffset).toFixed(2)));
-    console.log(totalEmission)
 
     if (!totalEmission) {
         return (
