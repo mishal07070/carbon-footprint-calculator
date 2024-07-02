@@ -5,7 +5,7 @@
 The Carbon Footprint Calculator with Dashboard is a web application developed over the MERN stack. This project aims to help individuals and organizations estimate their carbon footprint by considering various scope-wise parameters, including Scope 1 (fossil fuel and fugitives), Scope 2 (electricity), and Scope 3 (water and waste). This calculator provides a user-friendly interface for data input and visualizes the carbon emissions data using interactive charts. <br>
 Along with the calculator, the dashboard provides the lates news related to the activities taking place in the SEE department, such as projects, talks, papers published etc.<br>
 
-The calculator is deployed at : https://iitk.ac.in/ckc/carbon-calculator/
+The calculator is deployed at : https://iitk.ac.in/ckc/carbon-calculator/ <br>
 The dashboard is deployed at : https://www.iitk.ac.in/ckc/kesavan-center-dashboard/
 
 ## Features of the Calculator
