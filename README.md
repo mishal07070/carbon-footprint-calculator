@@ -46,11 +46,10 @@ The Carbon Footprint Calculator allows users to input data for different scopes 
 ## Technologies Used
 
 - **React.js**: The frontend of the application is built using React.js, a popular JavaScript library for building user interfaces.
-- **Node.js**: For server-side computations of the data from the Excel Sheets.
 - **ExcelJS** : For calculations of emission values from the excel sheet uploaded by the user.
 - **Chart.js**: Chart.js is used for creating interactive charts that display carbon emissions data.
 - **MongoDB** : For storage and retrieval of dashboard data.
-- **ExpressJS** : For creating a backend server to interact with the MongoDB database.
+- **Node.js with ExpressJS**: For creating a backend server to interact with the MongoDB database.
 
 ## Installation
 
