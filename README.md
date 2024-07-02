@@ -64,7 +64,3 @@ To run the Carbon Footprint Calculator on your local machine, follow these steps
 
 4. Naviage to the backend folder using `cd ../backend` and run `node server.js` to start the backend server.
 
-
-## Contribute
-
-Please note that this project is open source, and contributions from the community are welcome. Feel free to fork the repository, make improvements, and submit pull requests to help me enhance the Carbon Footprint Calculator.
