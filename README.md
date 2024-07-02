@@ -3,7 +3,7 @@
 ## Introduction
 
 The Carbon Footprint Calculator is a web application developed using React.js and Chart.js. This project aims to help individuals and organizations estimate their carbon footprint by considering various scope-wise parameters, including Scope 1 (fossil fuel and fugitives), Scope 2 (electricity), and Scope 3 (water and waste). This calculator provides a user-friendly interface for data input and visualizes the carbon emissions data using interactive charts.
-Deployed at : https://carboncalculators.netlify.app/
+Deployed at : https://iitk.ac.in/ckc/carbon-calculator/
 
 ## Features
 
@@ -39,9 +39,9 @@ The Carbon Footprint Calculator allows users to input data for different scopes 
 ## Technologies Used
 
 - **React.js**: The frontend of the application is built using React.js, a popular JavaScript library for building user interfaces.
+- **Node.js**: For server-side computations of the data from the Excel Sheets.
 - **Chart.js**: Chart.js is used for creating interactive charts that display carbon emissions data.
 - **ExcelJS** : For calculations of emission values from the excel sheet uploaded by the user.
-- **Multithreading using Web Workers API** : To ensure a smooth user experience while computing data from the Excel Sheets.
 
 ## Installation
 
@@ -49,13 +49,14 @@ To run the Carbon Footprint Calculator on your local machine, follow these steps
 
 1. Clone the GitHub repository: `git clone `
 
-2. Navigate to the project directory: `cd carbon-calculator`
+2. Navigate to all the directories calculator/dashboard/backend: `cd carbon-calculator/calculator`,`cd carbon-calculator/dashboard`,`cd carbon-calculator/backend`
 
-3. Install dependencies: `npm install`
+3. Install dependencies in the respective directories: `npm install`
 
-4. Start the development server: `npm start`
+4. Start the development server to start the frontend, either for calculator or for dashboard: `npm start`
 
-5. Access the calculator in your web browser at `http://localhost:3000`.
+5. Naviage to the backend folder using `cd ../backend` and run `node backend.js` to start the backend server.
+
 
 ## Contribute
 
