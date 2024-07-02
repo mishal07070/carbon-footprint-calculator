@@ -6,6 +6,7 @@ The Carbon Footprint Calculator with Dashboard is a web application developed ov
 Along with the calculator, the dashboard provides the lates news related to the activities taking place in the SEE department, such as projects, talks, papers published etc.<br>
 
 The calculator is deployed at : https://iitk.ac.in/ckc/carbon-calculator/
+The dashboard is deployed at : https://www.iitk.ac.in/ckc/kesavan-center-dashboard/
 
 ## Features of the Calculator
 
