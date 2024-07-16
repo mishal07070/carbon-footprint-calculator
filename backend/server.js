@@ -14,12 +14,7 @@ const params = {
 }
 
 mongoose.connect(db_url, params)
-    .then(() => {
-        console.log("Connected to database");
-    })
-    .catch((err) => {
-        console.error(err);
-    });
+
 
 const User = require("./models/user");
 const Stats = require("./models/stats");
