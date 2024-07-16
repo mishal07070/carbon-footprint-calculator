@@ -25,10 +25,14 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/api/getStats", (req, res)=>{
-    Stats.find()
-    .then(stats => res.json(stats))
-    .catch(err => res.json(err))
+app.get("/api/getStats", async(req, res)=>{
+    try{
+        await Stats.find()
+        stats => res.json(stats)
+    }
+    catch(err){
+        err => res.json(err);
+    }
 })
 
 app.post('/api/delete', async(req, res) => {
