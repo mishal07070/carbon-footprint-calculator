@@ -5,7 +5,6 @@ import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardCard01 from '../partials/dashboard/DashboardCard01';
-// import DashboardCard02 from '../partials/dashboard/DashboardCard02';
 import DashboardCard03 from '../partials/dashboard/DashboardCard03';
 import DashBoardNewsPaperArticles from '../partials/dashboard/DashBoardNewsPaperArticles';
 import DashBoardNetZeroIITK from '../partials/dashboard/DashBoardNetZeroIITK';
