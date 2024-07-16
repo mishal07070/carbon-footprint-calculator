@@ -26,7 +26,6 @@ import UpdatePages from '../partials/dashboard/UpdatePages';
 // import DashboardTalks from '../partials/dashboard/DashboardCardTalks';
 
 const getUrl = import.meta.env.VITE_URL + "/api/getStats";
-// const getUrl = "https://carbon-calculator-dashboard-xwnq.onrender.com" + "/api/getStats";
 
 function Dashboard( {isAuthenticated} ) {
 
