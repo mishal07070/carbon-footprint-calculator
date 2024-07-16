@@ -63,7 +63,7 @@ app.post('/api/delete', async(req, res) => {
 
 app.get('/api/getActivities', async (req, res) => {
     try {
-      const activities = await Activity.find(); // Fetch all talks from the MongoDB collection
+      const activities = await Activity.find(); 
       res.status(200).json(activities);
     } catch (error) {
       console.error(error);
@@ -84,7 +84,7 @@ app.post('/api/saveActivity', async (req, res) => {
 
 app.get('/api/getPapers', async (req, res) => {
     try {
-      const papers = await Paper.find(); // Fetch all talks from the MongoDB collection
+      const papers = await Paper.find(); 
       res.status(200).json(papers);
     } catch (error) {
       console.error(error);
@@ -105,7 +105,7 @@ app.post('/api/savePaper', async (req, res) => {
 
 app.get('/api/getTalks', async (req, res) => {
     try {
-      const talks = await Talk.find(); // Fetch all talks from the MongoDB collection
+      const talks = await Talk.find(); 
       res.status(200).json(talks);
     } catch (error) {
       console.error(error);
@@ -126,7 +126,7 @@ app.post('/api/saveTalk', async (req, res) => {
 
 app.get('/api/getProjects', async (req, res) => {
     try {
-      const projects = await Project.find(); // Fetch all talks from the MongoDB collection
+      const projects = await Project.find(); 
       res.status(200).json(projects);
     } catch (error) {
       console.error(error);
