@@ -145,31 +145,31 @@ app.post('/api/saveProject', async (req, res) => {
     }
 });
 
-app.post("/api/register", async (req, resp) => {
-    try {
-        await Stats.deleteMany({})
-        await Stats.create(
-            {name:req.body.name,
-            linkedinPosts:req.body.newLinkedinPosts, 
-            twitterArticles:req.body.newTwitterArticles,
-            newsPaperArticles:req.body.newNewsPaperArticles,
-            projects:req.body.newProjects,
-            papers:req.body.newPapers,
-            netZeroIITKStatus:req.body.newNetZeroIITKStatus,
-            netZeroArmyCanttStatus: req.body.newNetZeroArmyCanttStatus,
-            outreachActivities:req.body.newOutreachActivities,
-            funding1: req.body.newFunding1,
-            funding2: req.body.newFunding2,
-            funding3: req.body.newFunding3,
-            talks: req.body.newTalks,
-            linkedinFollowers: req.body.newLinkedinFollowers,
-            twitterFollowers: req.body.newTwitterFollowers
-            })
+// app.post("/api/register", async (req, resp) => {
+//     try {
+//         await Stats.deleteMany({})
+//         await Stats.create(
+//             {name:req.body.name,
+//             linkedinPosts:req.body.newLinkedinPosts, 
+//             twitterArticles:req.body.newTwitterArticles,
+//             newsPaperArticles:req.body.newNewsPaperArticles,
+//             projects:req.body.newProjects,
+//             papers:req.body.newPapers,
+//             netZeroIITKStatus:req.body.newNetZeroIITKStatus,
+//             netZeroArmyCanttStatus: req.body.newNetZeroArmyCanttStatus,
+//             outreachActivities:req.body.newOutreachActivities,
+//             funding1: req.body.newFunding1,
+//             funding2: req.body.newFunding2,
+//             funding3: req.body.newFunding3,
+//             talks: req.body.newTalks,
+//             linkedinFollowers: req.body.newLinkedinFollowers,
+//             twitterFollowers: req.body.newTwitterFollowers
+//             })
  
-    } catch (e) {
-        resp.send(e);
-    }
-});
+//     } catch (e) {
+//         resp.send(e);
+//     }
+// });
 
 app.post("/signup", async (req, res) => {
     try{
