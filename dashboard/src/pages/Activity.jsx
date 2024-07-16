@@ -8,10 +8,8 @@ const Activities = ({isAuthenticated}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const fetchurl = import.meta.env.VITE_URL + '/api/getActivities'
-  // const fetchurl = "https://carbon-calculator-dashboard-xwnq.onrender.com" + '/api/getActivities'
 
   useEffect(() => {
-    // Make an API call to fetch activities from MongoDB
     const fetchactivities = async () => {
       try {
         const response = await axios.get(fetchurl);
