@@ -8,12 +8,8 @@ require('dotenv').config();
 
 const db_url = process.env.MONGODB_URI;
 const PORTNO = process.env.PORT || 3000 ;
-const params = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}
 
-mongoose.connect(db_url, params)
+mongoose.connect(db_url)
 
 
 const User = require("./models/user");
