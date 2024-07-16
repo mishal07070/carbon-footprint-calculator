@@ -28,10 +28,10 @@ app.use(bodyParser.json());
 app.get("/api/getStats", async(req, res)=>{
     try{
         await Stats.find()
-        stats => res.json(stats)
+        res.json(stats)
     }
     catch(err){
-        err => res.json(err);
+        res.json(err);
     }
 })
 
