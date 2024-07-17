@@ -11,15 +11,18 @@ const Projects = ({isAuthenticated}) => {
   // const fetchurl = "https://carbon-calculator-dashboard-xwnq.onrender.com" + "/api/getProjects"
 
   useEffect(() => {
-    // Make an API call to fetch projects from MongoDB
     const fetchprojects = async () => {
       try {
-        const response = await axios.get(fetchurl);
-        setprojectsData(response.data);
-      } catch (error) {
-        console.error(error);
+      const response = await axiosInstance.get('/api/getProjects');
+      setTalksData(response.data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
       }
-    };
+    }
+  };
 
     fetchprojects();
   }, []);
