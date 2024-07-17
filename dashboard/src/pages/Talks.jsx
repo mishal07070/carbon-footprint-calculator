@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from './axiosInstance'; // Adjust path based on your project structure
 import Header from '../partials/Header';
 import Sidebar from '../partials/Sidebar';
 
-const Talks = ({isAuthenticated}) => {
+const Talks = () => {
   const [talksData, setTalksData] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const fetchurl = import.meta.env.VITE_URL + '/api/getTalks'
-  // const fetchurl = 'https://carbon-calculator-dashboard-xwnq.onrender.com' + '/api/getTalks'
+  const fetchTalks = async () => {
+    try {
+      const response = await axiosInstance.get('/api/getTalks');
+      setTalksData(response.data);
+    } catch (error) {
+      console.error('Error fetching talks:', error);
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    // Make an API call to fetch talks from MongoDB
-    const fetchTalks = async () => {
-      try {
-        const response = await axios.get(fetchurl);
-        setTalksData(response.data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchTalks();
   }, []);
+
+  
 console.log(isAuthenticated);
+
+  
   return (
     <div className="flex h-screen overflow-hidden font-roboto">
   <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
