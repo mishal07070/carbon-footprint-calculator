@@ -35,6 +35,8 @@ export default function Login( {setIsAuthenticated}) {
                 alert("Invalid Credentials");
             }
             else if(res.status == 200){
+                const { token } = await res.json(); 
+                localStorage.setItem('token', token); 
                 setIsAuthenticated(true);
                 navigateTo("/ckc/carbon-calculator-dashboard");
             }
