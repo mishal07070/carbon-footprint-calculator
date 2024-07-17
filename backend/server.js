@@ -19,7 +19,6 @@ const Paper = require("./models/papers");
 const Activity = require("./models/activity");
 
 const app = express();
-app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
