@@ -11,16 +11,18 @@ const Papers = ({isAuthenticated}) => {
   // const fetchurl = "https://carbon-calculator-dashboard-xwnq.onrender.com" + "/api/getPapers"
 
   useEffect(() => {
-    // Make an API call to fetch papers from MongoDB
     const fetchpapers = async () => {
-      try {
-        const response = await axios.get(fetchurl);
-        setpapersData(response.data);
-      } catch (error) {
-        console.error(error);
+       try {
+      const response = await axiosInstance.get('/api/getPapers');
+      setTalksData(response.data);
+    } catch (error) {
+      console.error('Error fetching papers:', error);
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
       }
-    };
-
+    }
+  };
     fetchpapers();
   }, []);
 
