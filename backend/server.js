@@ -18,7 +18,6 @@ const Talk = require("./models/talks");
 const Project = require("./models/projects");
 const Paper = require("./models/papers");
 const Activity = require("./models/activity");
-Stats.createIndexes();
 
 const app = express();
 app.use(express.json());
