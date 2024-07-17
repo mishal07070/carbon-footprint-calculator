@@ -23,8 +23,7 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-// Middleware to verify JWT token
-const verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {                //middleware
     const token = req.headers.authorization;
 
     if (!token) {
@@ -51,7 +50,7 @@ app.get("/api/getStats", async (req, res) => {
     }
 });
 
-// Delete endpoint
+
 app.post('/api/delete', async (req, res) => {
     try {
         const deleteId = req.body.id;
@@ -86,7 +85,7 @@ app.post('/api/delete', async (req, res) => {
     }
 });
 
-// Get activities endpoint
+
 app.get('/api/getActivities', async (req, res) => {
     try {
         const activities = await Activity.find();
@@ -97,7 +96,7 @@ app.get('/api/getActivities', async (req, res) => {
     }
 });
 
-// Save activity endpoint
+
 app.post('/api/saveActivity', async (req, res) => {
     try {
         const newActivity = new Activity(req.body);
@@ -120,7 +119,7 @@ app.get('/api/getPapers', async (req, res) => {
     }
 });
 
-// Save paper endpoint
+
 app.post('/api/savePaper', async (req, res) => {
     try {
         const newPaper = new Paper(req.body);
@@ -132,7 +131,7 @@ app.post('/api/savePaper', async (req, res) => {
     }
 });
 
-// Get talks endpoint
+
 app.get('/api/getTalks', async (req, res) => {
     try {
         const talks = await Talk.find();
@@ -143,7 +142,7 @@ app.get('/api/getTalks', async (req, res) => {
     }
 });
 
-// Save talk endpoint
+
 app.post('/api/saveTalk', async (req, res) => {
     try {
         const newTalk = new Talk(req.body);
@@ -155,7 +154,7 @@ app.post('/api/saveTalk', async (req, res) => {
     }
 });
 
-// Get projects endpoint
+
 app.get('/api/getProjects', async (req, res) => {
     try {
         const projects = await Project.find();
@@ -166,7 +165,7 @@ app.get('/api/getProjects', async (req, res) => {
     }
 });
 
-// Save project endpoint
+
 app.post('/api/saveProject', async (req, res) => {
     try {
         const newProject = new Project(req.body);
@@ -178,7 +177,7 @@ app.post('/api/saveProject', async (req, res) => {
     }
 });
 
-// User registration endpoint
+
 app.post("/signup", async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -200,22 +199,14 @@ app.post("/signup", async (req, res) => {
 
         await user.save();
 
-        const token = jwt.sign(
-            { user_id: user._id, email },
-            process.env.TOKEN_KEY,
-            {
-                expiresIn: "5h",
-            }
-        );
-
-        res.status(201).json({ token });
+        res.status(200);
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
 
-// User login endpoint
+
 app.post("/signin", async (req, res) => {
     try {
         const { email, password } = req.body;
