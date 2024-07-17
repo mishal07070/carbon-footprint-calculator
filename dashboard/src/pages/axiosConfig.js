@@ -1,8 +1,10 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.VITE_URL; 
+const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_URL,
+});
 
-axios.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -15,15 +17,4 @@ axios.interceptors.request.use(
   }
 );
 
-axios.interceptors.response.use(
-  response => {
-    return response;
-  },
-  error => {
-    if (error.response && error.response.status === 401) {
-      localStorage.removeItem('token');
-      setIsAuthenticated(false); 
-    }
-    return Promise.reject(error);
-  }
-);
+export default axiosInstance;
