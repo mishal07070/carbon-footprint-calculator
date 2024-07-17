@@ -11,7 +11,7 @@ import DashBoardNetZeroIITK from '../partials/dashboard/DashBoardNetZeroIITK';
 import DashBoardNetZeroArmyCantt from '../partials/dashboard/DashBoardNetZeroArmyCantt';
 import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import ExcelUploader from '../utils/ExcelUploader';
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
 import ExcelDownloader from '../utils/ExcelDownloader';
 import ExcelCurrentDownloader from '../utils/ExcelCurrentDownloader';
 import OutreachLink from '../partials/dashboard/OutreachLink';
