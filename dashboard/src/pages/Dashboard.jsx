@@ -102,7 +102,13 @@ useEffect( () => {
     setLinkedinFollowers(stats.data[0].linkedinFollowers);
     setTwitterFollowers(stats.data[0].twitterFollowers);
   })
-  .catch((err)=> console.log(err))
+  .catch((err)=> {
+    console.log(err)
+    if(err.response && err.response.status === 401) {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+    }
+  })
 },[])
 
   return (
