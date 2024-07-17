@@ -1,16 +1,15 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const bcrypt = require("bcryptjs")
-const cors = require("cors");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 require('dotenv').config();
 
 const db_url = process.env.MONGODB_URI;
-const PORTNO = process.env.PORT || 3000 ;
+const PORTNO = process.env.PORT || 3000;
 
-mongoose.connect(db_url)
-
+mongoose.connect(db_url);
 
 const User = require("./models/user");
 const Stats = require("./models/stats");
@@ -24,171 +23,183 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/api/getStats", async(req, res)=>{
-    try{
-        await Stats.find()
-        res.json(stats)
-    }
-    catch(err){
-        res.json(err);
-    }
-})
+// Middleware to verify JWT token
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization;
 
-app.post('/api/delete', async(req, res) => {
-  try {
-    const deleteId = req.body.id;
-    const selectedTab = req.body.tab;
-    let deletedTalk;
-    if(selectedTab === 'Talks')
-      deletedTalk = await Talk.findByIdAndDelete(deleteId);
-    else if(selectedTab === 'Projects')
-      deletedTalk = await Project.findByIdAndDelete(deleteId);
-    else if(selectedTab === 'Papers')
-      deletedTalk = await Paper.findByIdAndDelete(deleteId);
-    else if(selectedTab === 'Activities')
-      deletedTalk = await Activity.findByIdAndDelete(deleteId);
-
-    if (!deletedTalk) {
-      return res.status(404).json({ message: 'Not found' });
+    if (!token) {
+        return res.status(401).send('Unauthorized: No token provided');
     }
 
-    res.status(200).json({ message: 'Deleted successfully' });
-  } 
-  catch(err){
-    console.log(err);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
+    jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
+        if (err) {
+            return res.status(401).send('Unauthorized: Invalid token');
+        }
+
+        req.user = decoded;
+        next();
+    });
+};
+
+// Routes
+app.get("/api/getStats", async (req, res) => {
+    try {
+        const stats = await Stats.find();
+        res.json(stats);
+    } catch (err) {
+        res.status(500).json({ message: 'Internal server error' });
+    }
 });
 
+// Delete endpoint
+app.post('/api/delete', async (req, res) => {
+    try {
+        const deleteId = req.body.id;
+        const selectedTab = req.body.tab;
+        let deletedItem;
+
+        switch (selectedTab) {
+            case 'Talks':
+                deletedItem = await Talk.findByIdAndDelete(deleteId);
+                break;
+            case 'Projects':
+                deletedItem = await Project.findByIdAndDelete(deleteId);
+                break;
+            case 'Papers':
+                deletedItem = await Paper.findByIdAndDelete(deleteId);
+                break;
+            case 'Activities':
+                deletedItem = await Activity.findByIdAndDelete(deleteId);
+                break;
+            default:
+                return res.status(400).json({ message: 'Invalid tab selection' });
+        }
+
+        if (!deletedItem) {
+            return res.status(404).json({ message: 'Not found' });
+        }
+
+        res.status(200).json({ message: 'Deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
+// Get activities endpoint
 app.get('/api/getActivities', async (req, res) => {
     try {
-      const activities = await Activity.find(); 
-      res.status(200).json(activities);
+        const activities = await Activity.find();
+        res.status(200).json(activities);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
+// Save activity endpoint
 app.post('/api/saveActivity', async (req, res) => {
     try {
-      const newActivity = new Activity(req.body);
-      await newActivity.save();
-      res.status(200).json({ message: 'Activity saved successfully!' });
+        const newActivity = new Activity(req.body);
+        await newActivity.save();
+        res.status(200).json({ message: 'Activity saved successfully!' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  });
+});
 
+// Get papers endpoint
 app.get('/api/getPapers', async (req, res) => {
     try {
-      const papers = await Paper.find(); 
-      res.status(200).json(papers);
+        const papers = await Paper.find();
+        res.status(200).json(papers);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
+// Save paper endpoint
 app.post('/api/savePaper', async (req, res) => {
     try {
-      const newPaper = new Paper(req.body);
-      await newPaper.save();
-      res.status(200).json({ message: 'Paper saved successfully!' });
+        const newPaper = new Paper(req.body);
+        await newPaper.save();
+        res.status(200).json({ message: 'Paper saved successfully!' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  });
+});
 
+// Get talks endpoint
 app.get('/api/getTalks', async (req, res) => {
     try {
-      const talks = await Talk.find(); 
-      res.status(200).json(talks);
+        const talks = await Talk.find();
+        res.status(200).json(talks);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
+// Save talk endpoint
 app.post('/api/saveTalk', async (req, res) => {
     try {
-      const newTalk = new Talk(req.body);
-      await newTalk.save();
-      res.status(200).json({ message: 'Talk saved successfully!' });
+        const newTalk = new Talk(req.body);
+        await newTalk.save();
+        res.status(200).json({ message: 'Talk saved successfully!' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  });
+});
 
+// Get projects endpoint
 app.get('/api/getProjects', async (req, res) => {
     try {
-      const projects = await Project.find(); 
-      res.status(200).json(projects);
+        const projects = await Project.find();
+        res.status(200).json(projects);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
+// Save project endpoint
 app.post('/api/saveProject', async (req, res) => {
     try {
-      const newProject = new Project(req.body);
-      await newProject.save();
-      res.status(200).json({ message: 'Project saved successfully!' });
+        const newProject = new Project(req.body);
+        await newProject.save();
+        res.status(200).json({ message: 'Project saved successfully!' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
 });
 
-// app.post("/api/register", async (req, resp) => {
-//     try {
-//         await Stats.deleteMany({})
-//         await Stats.create(
-//             {name:req.body.name,
-//             linkedinPosts:req.body.newLinkedinPosts, 
-//             twitterArticles:req.body.newTwitterArticles,
-//             newsPaperArticles:req.body.newNewsPaperArticles,
-//             projects:req.body.newProjects,
-//             papers:req.body.newPapers,
-//             netZeroIITKStatus:req.body.newNetZeroIITKStatus,
-//             netZeroArmyCanttStatus: req.body.newNetZeroArmyCanttStatus,
-//             outreachActivities:req.body.newOutreachActivities,
-//             funding1: req.body.newFunding1,
-//             funding2: req.body.newFunding2,
-//             funding3: req.body.newFunding3,
-//             talks: req.body.newTalks,
-//             linkedinFollowers: req.body.newLinkedinFollowers,
-//             twitterFollowers: req.body.newTwitterFollowers
-//             })
- 
-//     } catch (e) {
-//         resp.send(e);
-//     }
-// });
-
+// User registration endpoint
 app.post("/signup", async (req, res) => {
-    try{
-        const { email, password} = req.body;
+    try {
+        const { email, password } = req.body;
         if (!(email && password)) {
-            res.status(400).send("All input is required");
-          }
+            return res.status(400).send("All input is required");
+        }
+
         const oldUser = await User.findOne({ email });
         if (oldUser) {
             return res.status(409).send("User Already Exist. Please Login");
-          }
-        encryptedUserPassword = await bcrypt.hash(password, 10);
+        }
+
+        const encryptedUserPassword = await bcrypt.hash(password, 10);
 
         const user = new User({
             email: email.toLowerCase(),
             password: encryptedUserPassword,
-          });
+        });
 
-        user.save();
-        
+        await user.save();
+
         const token = jwt.sign(
             { user_id: user._id, email },
             process.env.TOKEN_KEY,
@@ -196,38 +207,41 @@ app.post("/signup", async (req, res) => {
                 expiresIn: "5h",
             }
         );
-        
-        user.token = token;
-        res.status(201).json(user);
+
+        res.status(201).json({ token });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
     }
-    catch (err) {
-        console.log(err);
-      }
-})
+});
+
+// User login endpoint
 app.post("/signin", async (req, res) => {
-    try{
+    try {
         const { email, password } = req.body;
         if (!(email && password)) {
-            res.status(400).send("All input is required");
-          }
+            return res.status(400).send("All input is required");
+        }
+
         const user = await User.findOne({ email });
-        if (user && (await bcrypt.compare(password, user.password))) {
-            // Create token
-            const token = jwt.sign(
-              { user_id: user._id, email },
-              process.env.TOKEN_KEY,
-              {
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+            return res.status(400).send("Invalid Credentials");
+        }
+
+        const token = jwt.sign(
+            { user_id: user._id, email },
+            process.env.TOKEN_KEY,
+            {
                 expiresIn: "5h",
-              }
-            );
-        user.token = token;
-        return res.status(200).json(user);
             }
-        return res.status(400).send("Invalid Credentials");
+        );
+
+        res.status(200).json({ token });
     } catch (err) {
-        console.log(err);
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
 
 app.listen(PORTNO, () => {
     console.log("Listening on port: " + PORTNO);
