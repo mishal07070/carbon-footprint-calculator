@@ -182,10 +182,13 @@ app.post("/signup", async (req, res) => {
           }
         encryptedUserPassword = await bcrypt.hash(password, 10);
 
-        const user = await User.create({
+        const user = new User({
             email: email.toLowerCase(),
             password: encryptedUserPassword,
           });
+
+        user.save();
+        
         const token = jwt.sign(
             { user_id: user._id, email },
             process.env.TOKEN_KEY,
@@ -193,6 +196,7 @@ app.post("/signup", async (req, res) => {
                 expiresIn: "5h",
             }
         );
+        
         user.token = token;
         res.status(201).json(user);
     }
