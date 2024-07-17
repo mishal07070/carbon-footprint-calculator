@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
 import Header from '../partials/Header';
 import Sidebar from '../partials/Sidebar';
 
@@ -12,11 +12,15 @@ const Activities = ({isAuthenticated}) => {
   useEffect(() => {
     const fetchactivities = async () => {
       try {
-        const response = await axios.get(fetchurl);
-        setactivitiesData(response.data);
-      } catch (error) {
-        console.error(error);
+      const response = await axiosInstance.get('/api/getActivities');
+      setTalksData(response.data);
+    } catch (error) {
+      console.error('Error fetching activities:', error);
+      if (error.response && error.response.status === 401) {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
       }
+    }
     };
 
     fetchactivities();
