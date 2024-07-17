@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// Set base URL for Axios requests
-axios.defaults.baseURL = import.meta.env.VITE_URL; // Replace with your base URL
+axios.defaults.baseURL = import.meta.env.VITE_URL; 
 
-// Add a request interceptor to include JWT token in headers
 axios.interceptors.request.use(
   config => {
     const token = localStorage.getItem('token');
@@ -13,6 +11,19 @@ axios.interceptors.request.use(
     return config;
   },
   error => {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  response => {
+    return response;
+  },
+  error => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+      setIsAuthenticated(false); 
+    }
     return Promise.reject(error);
   }
 );
