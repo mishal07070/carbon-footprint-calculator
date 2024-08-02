@@ -28,10 +28,10 @@ export default function Signup() {
                 body: JSON.stringify(data)
             });
             if(res.status == 409){
-                alert("User already exists. Please try logging in.");
+                alert("User already exists");
             }
             else if (!res.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Error');
             }
             else{
                 alert("Signup Successful")
