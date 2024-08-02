@@ -22,22 +22,19 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const verifyToken = (req, res, next) => {                //middleware
+app.use((req, res, next) => {                //middleware for verifying jwt
     const token = req.headers.authorization;
-
     if (!token) {
-        return res.status(401).send('Unauthorized: No token provided');
+        return res.status(401).send('Unauthorized');
     }
-
     jwt.verify(token, process.env.TOKEN_KEY, (err, decoded) => {
         if (err) {
-            return res.status(401).send('Unauthorized: Invalid token');
+            return res.status(401).send('Invalid token');
         }
-
         req.user = decoded;
         next();
     });
-};
+});
 
 
 app.get("/api/getStats", async (req, res) => {
