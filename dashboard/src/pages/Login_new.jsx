@@ -9,9 +9,6 @@ export default function Login( {setIsAuthenticated}) {
     const [password, setPassword] = useState('');
     const navigateTo = useNavigate();
 
-    const getUrl = import.meta.env.VITE_URL + "/signin";
-    // const getUrl = "https://carbon-calculator-dashboard-xwnq.onrender.com" + "/signin";
-
     const handelSignin = async (e) => {
         e.preventDefault();
 
@@ -88,19 +85,6 @@ export default function Login( {setIsAuthenticated}) {
                         </button>
                     </div>
                 </form>
-                {/* Uncomment below to access signup */}
-                
-                {/* <p className="mt-8 text-xs font-light text-center text-gray-700">
-                    {" "}
-                    Don't have an account?{" "}
-                    <Link
-                        to="/ckc/carbon-calculator-dashboard/signup"
-                        className='text-lg text-green-700'
-                    >
-                        Signup
-                    </Link>
-                </p> */}
-                
             </div>
         </div>
     );
