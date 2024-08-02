@@ -39,7 +39,7 @@ const verifyToken = (req, res, next) => {                //middleware
     });
 };
 
-// Routes
+
 app.get("/api/getStats", async (req, res) => {
     try {
         const stats = await Stats.find();
@@ -107,7 +107,6 @@ app.post('/api/saveActivity', async (req, res) => {
     }
 });
 
-// Get papers endpoint
 app.get('/api/getPapers', async (req, res) => {
     try {
         const papers = await Paper.find();
