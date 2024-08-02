@@ -6,9 +6,6 @@ export default function Signup() {
     const [password, setPassword] = useState('');
     const navigateTo = useNavigate();
 
-    const fetchURL = import.meta.env.VITE_URL + "/signup";
-    // const fetchURL = "https://carbon-calculator-dashboard-xwnq.onrender.com" + "/signup";
-
 
     const handleSignup = async (e) => {
         e.preventDefault();
