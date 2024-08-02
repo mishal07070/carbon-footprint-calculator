@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from './axiosInstance.js';
+import axiosInstance from './axiosConfig.js';
 import Header from '../partials/Header';
 import Sidebar from '../partials/Sidebar';
 
